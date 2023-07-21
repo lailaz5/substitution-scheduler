@@ -78,18 +78,18 @@ def get_timetable(teacher):
 
     timetable = [[] for _ in days]
 
-    for time_idx, row in enumerate(rows):
+    for time_index, row in enumerate(rows):
         columns = iter(row.find_all('td'))
         lesson_time = next(iter(next(columns).find_all('p'))).text.strip()
         hours.append(lesson_time)
-        day_idx = 0
+        day_index = 0
         for cell in columns:
             # Update the day index based on the number of lessons already added
-            while day_idx < len(days) and len(timetable[day_idx]) > time_idx:
-                day_idx += 1
+            while day_index < len(days) and len(timetable[day_index]) > time_index:
+                day_index += 1
             lesson_duration = int(cell['rowspan'])
             for _ in range(lesson_duration):
-                timetable[day_idx].append(extract_data(cell))
+                timetable[day_index].append(extract_data(cell))
 
     timetable_data = {}
 
@@ -103,5 +103,5 @@ def get_timetable(teacher):
 
 if __name__ == '__main__':
     # Example usage: retrieve and print the timetable for a specific teacher
-    example = get_timetable("Saddemi Gabriella")
+    example = get_timetable("Piccolo Gianluca")
     print(json.dumps(example, indent=4))
