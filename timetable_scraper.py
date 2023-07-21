@@ -53,7 +53,7 @@ def extract_data(cell):
         else:
             return {
                 'attivita': class_name,
-                'insegnanti': subject,
+                'insegnanti': subject if subject != classroom else None,
                 'aula': classroom
             }
 
