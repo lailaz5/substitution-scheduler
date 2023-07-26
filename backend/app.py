@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 app = Flask(__name__)
 
-@app.route('/timetable/<path:teacher_name>', methods=['GET'])
+@app.route('/<path:teacher_name>', methods=['GET'])
 def get_teacher_timetable(teacher_name):
     decoded_teacher_name = unquote(teacher_name)  # Decode the URL parameter
     try:
