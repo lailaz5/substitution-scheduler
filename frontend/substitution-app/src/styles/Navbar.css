@@ -4,27 +4,28 @@
     padding: 1rem;
     display: flex;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
   
 .title {
     font-size: 1.5rem;
+    font-weight: 700;
     margin: 0;
-    transition: color 0.3s ease; /* Add transition for smooth color change */
-  }
+    transition: color 0.3s ease;
+}
   
-  .title:hover {
-    color: #5AA364; /* Color change on hover to match the button's hover color */
-  }
+.title:hover {
+    color: #C98053;
+}
   
 .github-button {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: #6BBB75;
-    color: #fff;
+    background-color: #E29477;
+    color: #FFF;
     text-decoration: none;
     border-radius: 0.5rem;
-    font-weight: bold;
+    font-weight: 300;
     transition: background-color 0.3s ease;
     margin-left: auto; 
 }
@@ -34,5 +35,5 @@
 }
   
 .github-button:hover {
-    background-color: #5AA364;
+    background-color: #C98053;
 }
