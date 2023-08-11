@@ -1,0 +1,45 @@
+.banner {
+    background-color: #F5F5F5;
+    padding: 40px;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.title {
+    font-size: 4rem;
+    margin: 0;
+    color: #333;
+}
+  
+.motto {
+    font-size: 2rem;
+    color: #666;
+}
+  
+.button-container {
+    margin-top: 20px; 
+    display: flex;
+    gap: 10px; 
+}
+  
+.github-button,
+.try-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #E29477;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+}
+  
+.github-button:hover,
+.try-button:hover {
+    background-color: #C98053;
+} 

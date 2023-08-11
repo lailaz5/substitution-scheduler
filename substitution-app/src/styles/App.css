@@ -1,3 +1,21 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E29477;
+  border-radius: 0.3rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F5F5; 
+}
+
+::selection {
+  background-color: #E29477;
+  color: #FFF;
+}
