@@ -30,7 +30,7 @@
 .try-button {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: #E29477;
+    background-color: #A4B494;
     color: #fff;
     text-decoration: none;
     border-radius: 0.5rem;
@@ -41,5 +41,5 @@
   
 .github-button:hover,
 .try-button:hover {
-    background-color: #C98053;
+    background-color: #8F9E7E;
 } 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Dropdown.css';
 
-const Dropdown = () => {
+const Dropdown = ({ onSelectTeacher }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('Insegnante da sostituire');
   const [teachersList, setTeachersList] = useState([]);
@@ -29,6 +29,9 @@ const Dropdown = () => {
     setIsOpen(false);
     setInputValue('');
     setFilteredOptions(teachersList);
+
+    // Pass the selected teacher name to the parent component
+    onSelectTeacher(option);
   };
 
   const handleInputChange = (e) => {
@@ -41,18 +44,13 @@ const Dropdown = () => {
 
   return (
     <div className="dropdown">
-      <div className="dropdown-header" onClick={toggleDropdown}>
+      <div className="header" onClick={toggleDropdown}>
         {selectedOption}
       </div>
       {isOpen && (
-        <div className="dropdown-content">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Cerca un insegnante..."
-          />
-          <ul className="dropdown-list">
+        <div className="content">
+          <input type="text" value={inputValue} onChange={handleInputChange} placeholder="Cerca un insegnante..."/>
+          <ul className="list">
             {filteredOptions.map((option, index) => (
               <li key={index} onClick={() => handleOptionClick(option)}>
                 {option}

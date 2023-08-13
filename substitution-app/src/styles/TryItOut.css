@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    background-color: #F5F5F5;
+}
+  
+.dropdown-container {
+    flex: 0 0 auto; 
+    padding: 1rem;
+}
+  
+.timetable-container {
+    flex: 1;
+    padding: 1rem;
+}

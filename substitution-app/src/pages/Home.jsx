@@ -10,7 +10,7 @@ const Home = () => {
         <a href="/TryItOut" className="try-button">
           <span>Try it out</span>
         </a>
-        <a href="https://github.com/lailaz5/substitution-scheduler" className="github-button">
+        <a href="https://github.com/lailaz5/substitution-scheduler" target="_blank" rel="noopener noreferrer" className="github-button">
           <span>GitHub Project</span>
         </a>
       </div>
