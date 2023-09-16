@@ -4,7 +4,7 @@ import '../styles/Timetable.css';
 
 const Timetable = ({ teacherName }) => {
   const [timetableData, setTimetableData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Add this state
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
     if (teacherName) {
@@ -13,11 +13,11 @@ const Timetable = ({ teacherName }) => {
       axios.get(url)
         .then(response => {
           setTimetableData(response.data);
-          setIsLoading(false); // Set loading to false when data is fetched
+          setIsLoading(false); 
         })
         .catch(error => {
           console.error('Error fetching timetable data:', error);
-          setIsLoading(false); // Also set loading to false on error
+          setIsLoading(false); 
         });
     }
   }, [teacherName]);
@@ -44,14 +44,22 @@ const Timetable = ({ teacherName }) => {
                 <td key={day} className="data-cell">
                   {timetableData[day][time] && (
                     <div className="data">
-                      {timetableData[day][time]?.attivita && (
-                        <p>{timetableData[day][time].attivita}</p>
-                      )}
-                      <p>{timetableData[day][time]?.classe}</p>
-                      <p>{timetableData[day][time]?.materia}</p>
+                    {timetableData[day][time]?.attivita && (
+                      <p>{timetableData[day][time].attivita}</p>
+                    )}
+                    <p>{timetableData[day][time]?.classe}</p>
+                    <p>{timetableData[day][time]?.materia}</p>
+                    {Array.isArray(timetableData[day][time]?.insegnanti) ? (
+                      <div>
+                        {timetableData[day][time].insegnanti.map((teacher, index) => (
+                          <p key={index}>{teacher}</p>
+                        ))}
+                      </div>
+                    ) : (
                       <p>{timetableData[day][time]?.insegnanti}</p>
-                      <p>{timetableData[day][time]?.aula}</p>
-                    </div>
+                    )}
+                    <p>{timetableData[day][time]?.aula}</p>
+                  </div>
                   )}
                 </td>
               ))}

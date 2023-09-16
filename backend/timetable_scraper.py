@@ -15,10 +15,6 @@ def fetch_teachers_dict():
                 links = cell.find_all('a')
                 for link in links:
                     teacher_name = link.text.strip()
-
-                    # Remove asterisk from teacher name if present
-                    teacher_name = teacher_name.replace('*', '')
-
                     teacher_link = link['href']
                     teachers_dict[teacher_name] = teacher_link
 
@@ -27,8 +23,8 @@ def fetch_teachers_dict():
 
 def extract_data(cell):
     # Extracts the relevant data from a cell in the timetable
-    data = [thing.text.strip() for thing in cell.find_all('p', id='nodecBlack')]
-
+    data = [content.text.strip() for content in cell.find_all(text=True) if content.strip() != '']
+    
     if not data:
         return None
 
@@ -41,10 +37,13 @@ def extract_data(cell):
     classroom = data[-1]
     subject = data[1]
 
+    teachers = []
+
     if len(data) >= 4:
-        teachers = data[2]
-    else:
-        if class_name != 'Ricevimento Parenti':
+        teachers = data[2:-1]
+
+    if class_name != 'Ricevimento Parenti':
+        if not teachers:
             return {
                 'classe': class_name,
                 'materia': subject,
@@ -52,18 +51,17 @@ def extract_data(cell):
             }
         else:
             return {
-                'attivita': class_name,
-                'insegnanti': subject if subject != classroom else None,
+                'classe': class_name,
+                'materia': subject,
+                'insegnanti': teachers,
                 'aula': classroom
             }
-
-    return {
-        'classe': class_name,
-        'materia': subject,
-        'insegnanti': teachers,
-        'aula': classroom
-    }
-
+    else:
+        return {
+            'attivita': class_name,
+            'insegnanti': teachers if teachers else None,
+            'aula': classroom
+        }
 
 def get_timetable(teacher):
     # Retrieves the timetable for the given teacher
