@@ -16,7 +16,11 @@ const TryItOut = () => {
         <Dropdown onSelectTeacher={handleSelectTeacher} />
       </div>
       <div className="timetable-container">
-        <Timetable teacherName={selectedTeacher} />
+        {selectedTeacher ? (
+          <Timetable teacherName={selectedTeacher} />
+        ) : (
+          <p>Please select a teacher to view the timetable.</p>
+        )}
       </div>
     </div>
   );

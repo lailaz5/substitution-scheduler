@@ -4,6 +4,7 @@ import '../styles/Timetable.css';
 
 const Timetable = ({ teacherName }) => {
   const [timetableData, setTimetableData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Add this state
 
   useEffect(() => {
     if (teacherName) {
@@ -12,13 +13,20 @@ const Timetable = ({ teacherName }) => {
       axios.get(url)
         .then(response => {
           setTimetableData(response.data);
+          setIsLoading(false); // Set loading to false when data is fetched
         })
-        .catch(error => console.error('Error fetching timetable data:', error));
+        .catch(error => {
+          console.error('Error fetching timetable data:', error);
+          setIsLoading(false); // Also set loading to false on error
+        });
     }
   }, [teacherName]);
 
   return (
     <div className="timetable">
+      {isLoading ? (
+        <div className="loading">Loading...</div>
+      ) : (
       <table>
         <thead>
           <tr>
@@ -36,13 +44,13 @@ const Timetable = ({ teacherName }) => {
                 <td key={day} className="data-cell">
                   {timetableData[day][time] && (
                     <div className="data">
+                      {timetableData[day][time]?.attivita && (
+                        <p>{timetableData[day][time].attivita}</p>
+                      )}
                       <p>{timetableData[day][time]?.classe}</p>
                       <p>{timetableData[day][time]?.materia}</p>
                       <p>{timetableData[day][time]?.insegnanti}</p>
                       <p>{timetableData[day][time]?.aula}</p>
-                      {timetableData[day][time]?.attivita && (
-                        <p>{timetableData[day][time].attivita}</p>
-                      )}
                     </div>
                   )}
                 </td>
@@ -51,6 +59,7 @@ const Timetable = ({ teacherName }) => {
           ))}
         </tbody>
       </table>
+      )}
     </div>
   );
 };

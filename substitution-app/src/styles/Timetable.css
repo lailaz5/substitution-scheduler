@@ -1,11 +1,16 @@
 .timetable {
     margin-top: 20px;
 }
+
+p {
+    color: #333;
+    text-align: center; 
+}
   
 table {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 1px solid #DDD;
     font-size: 14px;
 }
   
@@ -19,15 +24,12 @@ th, td {
 th,
 .time-column {
     background-color: #DDD;
+    font-weight: bold;
 }
   
 td {
     vertical-align: top;
     font-size: 0.8rem;
-}
-
-p {
-    color:  #333;
 }
 
 .data {

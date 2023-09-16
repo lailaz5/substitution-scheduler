@@ -35,11 +35,9 @@ const Dropdown = ({ onSelectTeacher }) => {
   };
 
   const handleInputChange = (e) => {
-    const inputText = e.target.value;
+    const inputText = e.target.value.trim().toLowerCase();
     setInputValue(inputText);
-    setFilteredOptions(teachersList.filter(option =>
-      option.toLowerCase().includes(inputText.toLowerCase())
-    ));
+    setFilteredOptions(teachersList.filter(option => option.toLowerCase().includes(inputText)));
   };
 
   return (
@@ -49,7 +47,7 @@ const Dropdown = ({ onSelectTeacher }) => {
       </div>
       {isOpen && (
         <div className="content">
-          <input type="text" value={inputValue} onChange={handleInputChange} placeholder="Cerca un insegnante..."/>
+          <input type="text" value={inputValue} onChange={handleInputChange} placeholder="Cerca un insegnante..." />
           <ul className="list">
             {filteredOptions.map((option, index) => (
               <li key={index} onClick={() => handleOptionClick(option)}>
