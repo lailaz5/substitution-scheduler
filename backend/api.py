@@ -4,8 +4,10 @@ from urllib.parse import unquote
 from flask_cors import CORS
 import json
 
+
 app = Flask(__name__)
 CORS(app)
+
 
 @app.route('/<path:teacher_name>', methods=['GET'])
 def get_teacher_timetable(teacher_name):
@@ -19,11 +21,13 @@ def get_teacher_timetable(teacher_name):
     except KeyError:
         return jsonify({'error': 'Teacher not found'}), 404
 
+
 @app.route('/teachers', methods=['GET'])
 def get_list():
     teachers_dict = fetch_teachers_dict()
     teachers_list = list(teachers_dict.keys())
     return jsonify(teachers_list), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

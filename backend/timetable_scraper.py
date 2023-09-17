@@ -22,7 +22,6 @@ def fetch_teachers_dict():
 
 
 def extract_data(cell):
-    # Extracts the relevant data from a cell in the timetable
     data = [content.text.strip() for content in cell.find_all(text=True) if content.strip() != '']
     
     if not data:
@@ -63,8 +62,8 @@ def extract_data(cell):
             'aula': classroom
         }
 
+
 def get_timetable(teacher):
-    # Retrieves the timetable for the given teacher
     teachers_dict = fetch_teachers_dict()
 
     teacher_html = requests.get(f'https://www.isarchimede.edu.it/Orario/{teachers_dict[teacher]}').text
@@ -82,7 +81,6 @@ def get_timetable(teacher):
         hours.append(lesson_time)
         day_index = 0
         for cell in columns:
-            # Update the day index based on the number of lessons already added
             while day_index < len(days) and len(timetable[day_index]) > time_index:
                 day_index += 1
             lesson_duration = int(cell['rowspan'])
@@ -100,6 +98,5 @@ def get_timetable(teacher):
 
 
 if __name__ == '__main__':
-    # Example usage: retrieve and print the timetable for a specific teacher
     example = get_timetable("Piccolo Gianluca")
     print(json.dumps(example, indent=4))

@@ -30,7 +30,6 @@ const Dropdown = ({ onSelectTeacher }) => {
     setInputValue('');
     setFilteredOptions(teachersList);
 
-    // Pass the selected teacher name to the parent component
     onSelectTeacher(option);
   };
 
