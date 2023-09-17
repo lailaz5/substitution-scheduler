@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 api_url = 'http://localhost:5000'
 
@@ -33,11 +34,10 @@ def create_available_hours_json():
 
     for teacher_name in teachers_list:
         available_hours = fetch_available_hours(teacher_name)
-        print(teacher_name)
         teacher_hours = {}
 
         for hour in available_hours:
-            day, time = hour.split()  # Split the day and time
+            day, time = hour.split()  
             if day in teacher_hours:
                 teacher_hours[day].append(time)
             else:
@@ -45,11 +45,14 @@ def create_available_hours_json():
 
         available_hours_data[teacher_name] = teacher_hours
 
-    # Save the data to a JSON file
-    with open('available_hours.json', 'w') as json_file:
+    json_file_path = 'available_hours.json'
+    backend_directory = os.path.dirname(os.path.abspath(__file__))
+    full_json_file_path = os.path.join(backend_directory, json_file_path)
+
+    with open(full_json_file_path, 'w') as json_file:
         json.dump(available_hours_data, json_file, indent=4)
 
-    print('Available hours data saved to available_hours.json')
+    print(f'Available hours data saved to {full_json_file_path}')
 
 if __name__ == '__main__':
     create_available_hours_json()

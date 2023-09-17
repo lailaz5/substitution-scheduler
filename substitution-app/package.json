@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "npm-run-all -p start-flask start-react",
-    "start-flask": "python C:\\Users\\Utente\\OneDrive\\Desktop\\GitHub\\substitution-scheduler\\backend\\api.py",
+    "start-flask": "python ../backend/api.py",
     "start-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
