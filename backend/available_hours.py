@@ -2,6 +2,8 @@ import requests
 import json
 import os
 
+# temporary
+
 api_url = 'http://localhost:5000'
 
 def fetch_teachers_list():

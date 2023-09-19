@@ -14,10 +14,18 @@
     margin: 0;
     color: #333;
 }
+
+.title::selection {
+    color: #A4B494;
+}
   
 .motto {
     font-size: 2rem;
     color: #666;
+}
+
+.motto::selection {
+    color: #A4B494;
 }
   
 .button-container {
@@ -31,7 +39,7 @@
     display: inline-block;
     padding: 0.5rem 1rem;
     background-color: #A4B494;
-    color: #fff;
+    color: #FFF;
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: 300;
