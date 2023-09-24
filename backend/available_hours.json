@@ -2,13 +2,15 @@
     ".A.E Aiolfi Anna": {},
     ".A.E Boni Alberto": {},
     ".A.E Del Carro Mariangela": {},
+    ".A.E Falda Enrico": {},
     ".A.E Giussani Francesco": {},
     ".A.E Guelfi Marianna": {},
+    ".A.E Ingargiola Flavia": {},
     ".A.E Maffeis Sara": {},
-    ".A.E Pescietta Giulia": {},
+    ".A.E Nicandro Patrizia": {},
+    ".A.E Pescetta Giulia": {},
     ".A.E Spinelli Grazia": {},
     ".A.E Zibetti Stefano": {},
-    ".A.E. Nicandro Patrizia": {},
     ".Caleca Mariella": {},
     ".Campo Maria Rita": {},
     ".Carluccio Giulia": {},
@@ -19,220 +21,169 @@
     ".Furfaro Sofia": {},
     ".Galleria Miriana": {},
     ".Garofalo Guglielmo": {},
-    ".Isabella Valentina": {},
+    ".Isabella Valentina": {
+        "LUN": [
+            "13.00"
+        ]
+    },
     ".Loddo Ilaria Paola": {},
     ".Mercuri Sandy": {},
     ".Pensato Maria Cristina": {},
     ".Sinatra Barbara": {},
+    ".Zaccanelli Silvia Maria": {},
     "Apicella Raffaele": {
         "LUN": [
-            "9.00",
-            "10.00",
-            "11.00"
-        ],
-        "MAR": [
+            "8.00",
             "9.00",
             "10.00"
         ],
-        "VEN": [
+        "MER": [
+            "8.00",
+            "9.00",
             "10.00",
             "11.00",
             "12.00"
-        ]
-    },
-    "Aquino Pamela": {
-        "MAR": [
-            "10.00"
-        ]
-    },
-    "Baglieri Ausilia": {
-        "MAR": [
-            "9.00"
-        ]
-    },
-    "Barbaro Francesca S.": {
-        "LUN": [
-            "8.00",
-            "9.00",
-            "10.00"
-        ],
-        "MAR": [
-            "10.00"
-        ],
-        "MER": [
-            "11.00"
-        ],
-        "VEN": [
-            "11.00"
-        ]
-    },
-    "Barbera Lucia": {},
-    "Bellissimo Domenico": {
-        "MAR": [
-            "9.00"
-        ]
-    },
-    "Benatti Lorenzo": {
-        "LUN": [
-            "9.00"
-        ],
-        "MAR": [
-            "9.00",
-            "10.00",
-            "11.00"
-        ],
-        "MER": [
-            "9.00"
         ],
         "GIO": [
-            "8.00",
-            "11.00"
+            "10.00"
+        ],
+        "VEN": [
+            "9.00",
+            "10.00"
         ],
         "SAB": [
             "8.00",
             "9.00"
         ]
     },
-    "Bindelli Francesca": {},
-    "Bocchino Antonello": {
+    "Aquino Pamela": {
         "LUN": [
             "10.00",
             "11.00"
+        ]
+    },
+    "Baglieri Ausilia": {},
+    "Barbaro Francesca S.": {},
+    "Barbera Lucia": {},
+    "Bellissimo Domenico": {
+        "MER": [
+            "12.00"
+        ]
+    },
+    "Benatti Lorenzo": {},
+    "Bindelli Francesca": {},
+    "Bocchino Antonello": {
+        "MAR": [
+            "9.00",
+            "10.00"
+        ],
+        "MER": [
+            "10.00"
+        ],
+        "GIO": [
+            "9.00",
+            "10.00"
         ],
         "VEN": [
             "9.00",
-            "11.00"
+            "10.00"
+        ],
+        "SAB": [
+            "10.00"
         ]
     },
     "Bovenzi Graziano": {},
     "Brillante Gennaro": {},
     "Bucci Valentina": {},
-    "Calcagno Martina": {
-        "MAR": [
-            "10.00"
-        ]
-    },
+    "Calcagno Martina": {},
     "Capolino Concetto": {},
+    "Caravella Luciana": {},
     "Carlino Giovanni": {},
     "Caruso Giuseppe": {},
     "Cavatorta Ludovica": {
-        "SAB": [
-            "9.00"
+        "MAR": [
+            "10.00"
+        ],
+        "GIO": [
+            "12.00"
         ]
     },
     "Ciancia Rita": {},
     "Cicchirillo Filippo": {},
     "Cinquegrani Gabriella": {
-        "LUN": [
-            "9.00",
-            "10.00"
+        "GIO": [
+            "12.00",
+            "13.00"
         ]
     },
     "Colicigno Irene": {},
-    "Coronini Sonia": {
-        "LUN": [
-            "11.00"
-        ],
-        "MAR": [
-            "10.00"
-        ]
-    },
-    "Crotti Roberto": {
-        "VEN": [
-            "10.00"
-        ],
-        "SAB": [
-            "8.00",
-            "9.00"
-        ]
-    },
-    "D'Ovidio Anita": {
-        "MAR": [
-            "10.00",
-            "11.00"
-        ],
-        "SAB": [
-            "9.00"
-        ]
-    },
-    "Di Micco Roberto": {
-        "MAR": [
-            "11.00"
-        ]
-    },
+    "Coronini Sonia": {},
+    "Crotti Roberto": {},
+    "D'Ovidio Anita": {},
+    "De Angelis Luigi": {},
+    "Di Micco Roberto": {},
     "Di Pasquale Domenico": {},
     "Dimatteo Lucy": {},
     "Donati Damiano": {},
-    "Esposito Giuseppe": {
-        "MER": [
-            "11.00"
-        ]
-    },
+    "Esposito Giuseppe": {},
     "Falsone Rosaria": {},
-    "Fazio Laura": {
-        "MAR": [
-            "9.00"
-        ]
-    },
+    "Fazio Laura": {},
     "Ferri Giovanni": {
-        "MAR": [
-            "11.00"
-        ],
-        "MER": [
+        "SAB": [
+            "9.00",
             "10.00"
-        ],
-        "VEN": [
-            "11.00"
         ]
     },
     "Fuccio Domenico": {
         "MAR": [
+            "12.00"
+        ]
+    },
+    "Gabriele Giovanni": {
+        "LUN": [
+            "8.00",
+            "9.00"
+        ],
+        "MAR": [
+            "8.00",
             "9.00"
         ]
     },
-    "Gabriele Giovanni": {},
     "Gatti Giuseppe": {
-        "MER": [
-            "9.00",
-            "11.00"
-        ],
-        "VEN": [
-            "10.00"
-        ],
-        "SAB": [
+        "LUN": [
             "9.00"
+        ],
+        "MAR": [
+            "9.00"
+        ],
+        "MER": [
+            "12.00"
         ]
     },
     "Ghezzi Raffaella": {},
     "Giorno Claudia": {},
-    "Grasso Giovanni": {
-        "MAR": [
+    "Grasso Giovanni": {},
+    "Grosso Salvatore": {
+        "MER": [
             "10.00"
         ],
         "GIO": [
-            "10.00"
+            "11.00"
         ]
     },
-    "Grosso Salvatore": {
-        "LUN": [
-            "9.00"
-        ]
-    },
+    "Guido Vera": {},
     "Hmaied Karem": {},
+    "itp chim. 1": {},
     "Iuliano Francesco E.": {},
     "La Nave Francesco": {},
     "La Riccia Michele": {
         "MAR": [
-            "9.00",
-            "11.00"
-        ],
-        "MER": [
-            "9.00"
+            "8.00"
         ],
         "VEN": [
+            "8.00",
             "9.00",
-            "11.00",
-            "12.00"
+            "11.00"
         ],
         "SAB": [
             "8.00",
@@ -242,315 +193,215 @@
     "Lombardi Valentina": {},
     "Lui Gianmarco": {},
     "Luongo Claudio": {},
-    "Maccali Francesco": {},
+    "lupo Davide": {},
     "Malatini Barbara": {},
-    "Maniglia Maurizio": {
-        "MER": [
-            "10.00"
+    "Maniglia Maurizio": {},
+    "Manzoni Francesca": {
+        "LUN": [
+            "9.00"
+        ],
+        "MAR": [
+            "9.00"
+        ],
+        "SAB": [
+            "8.00",
+            "9.00"
         ]
     },
-    "Manzoni Francesca": {},
     "Marcone Nicola": {
         "MAR": [
-            "10.00"
+            "8.00"
         ],
         "MER": [
+            "8.00",
             "9.00"
         ],
+        "VEN": [
+            "13.00"
+        ],
         "SAB": [
-            "9.00"
+            "8.00",
+            "9.00",
+            "10.00"
         ]
     },
+    "Marino Nicola": {},
     "Marmorano Rosella": {
-        "MAR": [
-            "10.00"
-        ],
-        "MER": [
-            "11.00"
-        ],
-        "GIO": [
-            "11.00"
-        ],
-        "VEN": [
-            "10.00"
-        ],
-        "SAB": [
-            "10.00",
-            "11.00"
-        ]
-    },
-    "Marzo Pasquale": {
-        "MAR": [
-            "11.00"
-        ]
-    },
-    "Mascali Giuliana": {
         "LUN": [
-            "11.00"
-        ]
-    },
-    "Mattera Lucia": {
+            "10.00",
+            "12.00"
+        ],
+        "MAR": [
+            "10.00"
+        ],
         "VEN": [
-            "9.00"
+            "10.00"
         ]
     },
-    "Mazza Lucio": {
-        "SAB": [
-            "9.00"
+    "Marzo Pasquale": {},
+    "Mascali Giuliana": {
+        "MAR": [
+            "12.00"
+        ],
+        "VEN": [
+            "12.00"
         ]
     },
+    "Mattera Lucia": {},
+    "Mazza Lucio": {},
     "Mazzetti Alessandra": {},
-    "Mercati Marco": {
-        "GIO": [
-            "9.00"
-        ]
-    },
+    "Mercati Marco": {},
     "Monzio Compagnoni Maurizio": {
         "LUN": [
             "9.00",
             "10.00",
             "11.00"
         ],
-        "SAB": [
-            "9.00"
-        ]
-    },
-    "Morganella Nicolina": {},
-    "Motta Federica": {
-        "MER": [
-            "10.00"
-        ]
-    },
-    "Mugnani Vincenzo": {
-        "GIO": [
-            "11.00"
-        ],
         "VEN": [
-            "9.00"
-        ],
-        "SAB": [
-            "9.00"
-        ]
-    },
-    "Nitiffi Riccardo": {},
-    "Nocerino Margherita": {
-        "MAR": [
-            "11.00"
-        ],
-        "SAB": [
-            "9.00"
-        ]
-    },
-    "Pagliazzo Francesca": {},
-    "Pallone Nicola": {
-        "MAR": [
-            "12.00"
-        ]
-    },
-    "Patrini Matteo": {
-        "MAR": [
-            "11.00"
-        ]
-    },
-    "Pellegrino Giovanni": {},
-    "Pellegrino Luciana": {
-        "VEN": [
-            "10.00"
-        ]
-    },
-    "Piccolo Gianluca": {
-        "GIO": [
+            "9.00",
             "10.00",
-            "11.00",
-            "12.00"
+            "11.00"
         ]
     },
-    "Pinnola Ilde Maria": {},
-    "Pitronacy Giusy": {
-        "LUN": [
+    "Morganella Nicolina": {
+        "SAB": [
             "10.00"
+        ]
+    },
+    "Motta Federica": {},
+    "Mugnani Vincenzo": {},
+    "Nitiffi Riccardo": {},
+    "Nocerino Margherita": {},
+    "Pagliazzo Francesca": {},
+    "Pallone Nicola": {},
+    "Patrini Matteo": {},
+    "Pellegrino Giovanni": {},
+    "Pellegrino Luciana": {},
+    "Piccolo Gianluca": {},
+    "Pinnola Ilde Maria": {},
+    "Pitronaci Giusy": {
+        "MAR": [
+            "11.00"
         ],
         "MER": [
-            "8.00",
-            "9.00"
+            "12.00",
+            "13.00"
         ],
         "VEN": [
-            "11.00"
+            "8.00"
+        ],
+        "SAB": [
+            "9.00",
+            "10.00"
         ]
     },
     "Pitruzzello Biagio": {
-        "MER": [
-            "10.00"
-        ],
-        "SAB": [
-            "8.00",
-            "9.00"
+        "GIO": [
+            "11.00",
+            "12.00"
         ]
     },
     "Possenti Valeria": {},
     "Reduzzi Pierluigi": {
         "LUN": [
-            "9.00"
+            "11.00"
         ],
         "MAR": [
-            "10.00"
-        ],
-        "MER": [
-            "9.00"
+            "11.00",
+            "12.00"
         ],
         "GIO": [
-            "9.00"
+            "11.00"
+        ],
+        "SAB": [
+            "9.00",
+            "10.00"
         ]
     },
     "Riggi Daniela": {
-        "LUN": [
-            "11.00"
-        ],
         "MAR": [
-            "9.00",
-            "10.00"
+            "9.00"
+        ],
+        "MER": [
+            "10.00",
+            "12.00"
         ],
         "GIO": [
             "10.00"
         ],
-        "SAB": [
-            "8.00",
-            "9.00"
+        "VEN": [
+            "8.00"
         ]
     },
     "Rossi Melania": {
-        "LUN": [
-            "9.00"
-        ],
-        "SAB": [
-            "8.00",
-            "9.00"
-        ]
-    },
-    "Rota Margherita": {
-        "VEN": [
-            "10.00"
-        ]
-    },
-    "Saddemi Gabriella": {
-        "LUN": [
-            "10.00"
-        ],
-        "MAR": [
+        "MER": [
             "11.00"
         ],
         "GIO": [
-            "9.00"
-        ],
-        "VEN": [
-            "10.00"
+            "12.00"
         ]
     },
-    "Saetta Davide": {},
-    "Saja Antonio": {
-        "SAB": [
-            "9.00"
-        ]
-    },
-    "Santandrea Davide": {
-        "LUN": [
+    "Rota Margherita": {},
+    "Saddemi Gabriella": {
+        "MAR": [
+            "8.00",
             "9.00",
             "10.00"
         ],
-        "MAR": [
-            "8.00",
-            "9.00"
-        ],
-        "MER": [
-            "9.00"
-        ],
         "VEN": [
-            "11.00"
-        ],
-        "SAB": [
-            "8.00",
-            "9.00"
+            "10.00"
         ]
     },
-    "Sciarra Vincenzo": {
+    "Saetta Davide": {
         "MER": [
-            "9.00"
-        ],
-        "VEN": [
-            "9.00"
+            "8.00"
         ]
     },
-    "Scolaro Lucilla": {
-        "MAR": [
-            "9.00"
-        ]
-    },
+    "Saja Antonio": {},
+    "Santandrea Davide": {},
+    "Sciarra Vincenzo": {},
+    "Scolaro Lucilla": {},
     "Sgro Alessandra": {
-        "LUN": [
-            "11.00"
-        ],
         "MAR": [
             "10.00"
         ],
+        "MER": [
+            "10.00"
+        ],
         "VEN": [
+            "8.00",
+            "10.00",
             "11.00"
         ],
         "SAB": [
+            "10.00"
+        ]
+    },
+    "Spina Carmela": {
+        "MAR": [
+            "8.00",
             "9.00"
+        ],
+        "SAB": [
+            "11.00"
         ]
     },
     "Staniscia Gaia": {},
-    "Tagliarino Gaspare": {
-        "SAB": [
-            "9.00"
-        ]
-    },
-    "Taranto Angelo": {
-        "GIO": [
-            "9.00",
-            "10.00"
-        ],
-        "VEN": [
-            "9.00"
-        ],
-        "SAB": [
-            "9.00"
-        ]
-    },
-    "Taverniti Ilenia": {
-        "LUN": [
-            "9.00",
-            "11.00"
-        ],
-        "MAR": [
-            "12.00"
-        ],
-        "SAB": [
-            "8.00"
-        ]
-    },
+    "Tagliarino Gaspare": {},
+    "Taranto Angelo": {},
+    "Taverniti Ilenia": {},
+    "Torazzi Alberto": {},
     "Vinciguerra Nicola": {
         "LUN": [
-            "9.00"
+            "10.00"
         ],
-        "VEN": [
-            "8.00"
+        "MAR": [
+            "11.00"
         ]
     },
     "Viola Marco": {},
-    "Zampelli Gabriella": {
-        "SAB": [
-            "9.00"
-        ]
-    },
+    "Zampelli Gabriella": {},
     "Zanatta Daniele": {},
-    "Zimbalatti Giuseppe": {
-        "LUN": [
-            "10.00"
-        ],
-        "SAB": [
-            "9.00"
-        ]
-    },
+    "Zimbalatti Giuseppe": {},
     "Zollino Matteo": {}
 }
