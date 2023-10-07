@@ -1,8 +1,6 @@
 import requests
-import json
 import os
-
-# temporary
+import pandas as pd
 
 api_url = 'http://localhost:5000'
 
@@ -30,7 +28,7 @@ def fetch_available_hours(teacher_name):
         print(f'Failed to fetch timetable for {teacher_name}. Status code: {response.status_code}')
         return []
 
-def create_available_hours_json():
+def create_excel():
     teachers_list = fetch_teachers_list()
     available_hours_data = {}
 
@@ -47,14 +45,17 @@ def create_available_hours_json():
 
         available_hours_data[teacher_name] = teacher_hours
 
-    json_file_path = 'available_hours.json'
+    df = pd.DataFrame(available_hours_data)
+
+    df = df.transpose()
+
+    excel_file_path = 'available_hours.xlsx'
     backend_directory = os.path.dirname(os.path.abspath(__file__))
-    full_json_file_path = os.path.join(backend_directory, json_file_path)
+    full_excel_file_path = os.path.join(backend_directory, excel_file_path)
 
-    with open(full_json_file_path, 'w') as json_file:
-        json.dump(available_hours_data, json_file, indent=4)
+    df.to_excel(full_excel_file_path, index=True, header=True)
 
-    print(f'Available hours data saved to {full_json_file_path}')
+    print(f'Available hours data saved to {full_excel_file_path}')
 
 if __name__ == '__main__':
-    create_available_hours_json()
+    create_excel()
