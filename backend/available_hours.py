@@ -12,6 +12,7 @@ def fetch_teachers_list():
         print(f'Failed to fetch teachers list. Status code: {response.status_code}')
         return []
 
+
 def fetch_available_hours(teacher_name):
     response = requests.get(f'{api_url}/{teacher_name}')
     if response.status_code == 200:
@@ -27,6 +28,7 @@ def fetch_available_hours(teacher_name):
     else:
         print(f'Failed to fetch timetable for {teacher_name}. Status code: {response.status_code}')
         return []
+
 
 def create_excel():
     teachers_list = fetch_teachers_list()
@@ -55,7 +57,6 @@ def create_excel():
 
     df.to_excel(full_excel_file_path, index=True, header=True)
 
-    print(f'Available hours data saved to {full_excel_file_path}')
 
 if __name__ == '__main__':
     create_excel()

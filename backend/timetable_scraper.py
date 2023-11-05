@@ -41,7 +41,7 @@ def extract_data(cell):
     if len(data) >= 4:
         teachers = data[2:-1]
 
-    if class_name != 'Ricevimento Parenti':
+    if class_name != '.R.P.':
         if not teachers:
             return {
                 'classe': class_name,
