@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def fetch_teachers_dict():
+def fetch_teachers():
     html_text = requests.get('https://www.isarchimede.edu.it/Orario/index.html').text
     main_table = BeautifulSoup(html_text, 'lxml').find('table')
 
@@ -19,6 +19,28 @@ def fetch_teachers_dict():
                     teachers_dict[teacher_name] = teacher_link
 
     return teachers_dict
+
+def fetch_classes(teacher):
+    classes = []
+    teachers_dict = fetch_teachers()
+    teacher_html = requests.get(f'https://www.isarchimede.edu.it/Orario/{teachers_dict[teacher]}').text
+
+    teacher_table = BeautifulSoup(teacher_html, 'html.parser').find('table')
+
+    if teacher_table:
+        for row in teacher_table.find_all('tr')[1:]:
+            columns = row.find_all('td')[1:]
+
+            # Extract the first <p> tag in each cell
+            for column in columns:
+                class_name_tag = column.find('p')
+
+                if class_name_tag:
+                    class_name = class_name_tag.text.strip()  # Get the text content of the <p> tag
+                    if class_name and class_name not in classes and len(class_name) == 5 and class_name != '.R.P.':
+                        classes.append(class_name)
+
+    return classes
 
 
 def extract_data(cell):
@@ -63,8 +85,8 @@ def extract_data(cell):
         }
 
 
-def get_timetable(teacher):
-    teachers_dict = fetch_teachers_dict()
+def fetch_timetable(teacher):
+    teachers_dict = fetch_teachers()
 
     teacher_html = requests.get(f'https://www.isarchimede.edu.it/Orario/{teachers_dict[teacher]}').text
     teacher_table = BeautifulSoup(teacher_html, 'lxml').find('table')
@@ -98,5 +120,8 @@ def get_timetable(teacher):
 
 
 if __name__ == '__main__':
-    example = get_timetable("Piccolo Gianluca")
-    print(json.dumps(example, indent=4))
+    teacher = "Piccolo Gianluca"
+    timetable = fetch_timetable(teacher)
+    classes = fetch_classes(teacher)
+    print(json.dumps(timetable, indent=4))
+    print(json.dumps(classes, indent=4))

@@ -1,5 +1,5 @@
 from flask import Flask, Response, jsonify
-from timetable_scraper import get_timetable, fetch_teachers_dict
+from scraping import fetch_timetable, fetch_teachers, fetch_classes
 from urllib.parse import unquote
 from flask_cors import CORS
 import json
@@ -10,10 +10,10 @@ CORS(app)
 
 
 @app.route('/<path:teacher_name>', methods=['GET'])
-def get_teacher_timetable(teacher_name):
+def timetable(teacher_name):
     decoded_teacher_name = unquote(teacher_name)  
     try:
-        timetable = get_timetable(decoded_teacher_name)
+        timetable = fetch_timetable(decoded_teacher_name)
         response_JSON = json.dumps(timetable, ensure_ascii=False, indent=2)
         response = Response(response_JSON, content_type='application/json; charset=utf-8')
         
@@ -23,11 +23,22 @@ def get_teacher_timetable(teacher_name):
 
 
 @app.route('/teachers', methods=['GET'])
-def get_list():
-    teachers_dict = fetch_teachers_dict()
+def teachers_list():
+    teachers_dict = fetch_teachers()
     teachers_list = list(teachers_dict.keys())
     return jsonify(teachers_list), 200
 
+@app.route('/<path:teacher_name>_classes', methods=['GET'])
+def classes(teacher_name):
+    decoded_teacher_name = unquote(teacher_name)  
+    try:
+        classes = fetch_classes(decoded_teacher_name)
+        response_JSON = json.dumps(classes, ensure_ascii=False, indent=2)
+        response = Response(response_JSON, content_type='application/json; charset=utf-8')
+        
+        return response, 200
+    except KeyError:
+        return jsonify({'error': 'No results found.'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
