@@ -1,0 +1,54 @@
+{
+    "Informatica": [
+        "Informatica", 
+        "Lab. Informatica", 
+        "Sistemi e Reti", 
+        "Lab. Sistemi e Reti", 
+        "Tecn. e Prog. di Sistemi Inf.", 
+        "Lab. Tecn e Prog. Sistemi Inf.", 
+        "GPOI", 
+        "Lab. GPOI",
+        "Telecomunicazioni",
+        "STA",
+        "TIC",
+        "Lab. TIC",
+        "Informatica IT"
+    ],
+    "Chimica": [
+        "Chimica", 
+        "Lab. Chimica", 
+        "Tecnologie Chimiche", 
+        "Lab. Tecn. Chimiche", 
+        "Chimica Analitica", 
+        "Lab. Chimica Analitica", 
+        "Chimica Organica", 
+        "Lab. Chimica Organica",
+        "STA",
+        "TIC",
+        "Lab. TIC"
+    ],
+    "Automazione": [
+        "Automazione", 
+        "Elettrotecnica", 
+        "Lab. Elettrotecnica", 
+        "Tecn. e Prog. di Sist. El.", 
+        "Lab.Tecn. e Prog. di Sist. El.", 
+        "Sist. Automatici", 
+        "Lab. Sistemi Automatici",
+        "STA",
+        "TIC",
+        "Lab. TIC"
+    ],
+    "Meccanica": [
+        "Meccanica", 
+        "Tecn. Meccaniche", 
+        "Lab. Tecn. Meccaniche", 
+        "Meccanica Macchine ed Energia", 
+        "Lab. Sistemi ed Automaz.", 
+        "Dis. Prog. e Org. Industriale", 
+        "Lab.Dis.Prog. Org.Industriale",
+        "STA",
+        "TIC",
+        "Lab. TIC"
+    ]
+}

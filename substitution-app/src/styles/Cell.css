@@ -18,3 +18,11 @@
 .data p {
     color: #5F6450;
 }
+
+.data-cell.empty-cell {
+    min-width: 10rem;  
+}
+  
+.empty-cell-content {
+    visibility: hidden;
+} 
