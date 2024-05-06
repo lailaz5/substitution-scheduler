@@ -12,12 +12,12 @@ with open(subjects_file_path, 'r') as f:
 
 def determine_sector(teacher):
     if teacher[0] == '.':
-        return None
+        return "N/A"
 
     subjects_response = requests.get(f'http://localhost:5000/{teacher}_subjects')
 
     if subjects_response.status_code != 200:
-        return None
+        return "N/A"
 
     subjects = subjects_response.json()
 
@@ -30,17 +30,17 @@ def determine_sector(teacher):
                 found_specialization = specialization
                 break
         if found_specialization is None:
-            return None
+            return "N/A"
         else:
             teaching_specialization.add(found_specialization)
 
     if len(teaching_specialization) > 1:
-        return None
+        return "N/A"
 
     if teaching_specialization:
         return teaching_specialization.pop()
     else:
-        return None
+        return "N/A"
 
 
 if __name__ == '__main__':

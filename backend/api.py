@@ -1,5 +1,5 @@
-from flask import Flask, Response, jsonify
 from scraping import fetch_timetable, fetch_teachers, fetch_classes, fetch_subjects
+from flask import Flask, Response, jsonify
 from urllib.parse import unquote
 from flask_cors import CORS
 import json
@@ -14,6 +14,13 @@ def teachers_list():
     teachers_dict = fetch_teachers()
     teachers_list = list(teachers_dict.keys())
     return jsonify(teachers_list), 200
+
+
+@app.route('/classes', methods=['GET'])
+def classes_list():
+    classes_dict = fetch_classes()
+    classes_list = list(classes_dict.keys())
+    return jsonify(classes_list), 200
 
 
 @app.route('/<path:teacher_name>_subjects', methods=['GET'])

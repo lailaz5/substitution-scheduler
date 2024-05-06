@@ -1,6 +1,6 @@
-import json
-import requests
 from bs4 import BeautifulSoup
+import requests
+import json
 
 
 default_url = 'https://www.isarchimede.edu.it/Orariodocenti'
@@ -45,6 +45,25 @@ def fetch_classes(teacher):
     return classes
 
 
+def fetch_classes():
+    html_text = requests.get(f'{default_url}/index.html').text
+    main_table = BeautifulSoup(html_text, 'lxml').find('table')
+
+    classes = {}
+
+    if main_table:
+        for row in main_table.find_all('tr'):
+            for cell in row.find_all('td'):
+                if 'CLASSI' in cell.text.strip():
+                    links = cell.find_all('a')
+                    for link in links:
+                        class_name = link.text.strip()
+                        class_link = link['href']
+                        classes[class_name] = class_link
+
+    return classes
+
+
 def fetch_subjects(teacher):
     timetable = fetch_timetable(teacher)
     subjects = []
@@ -74,14 +93,14 @@ def extract_data(cell):
 
     class_name = data[0]
     classroom = data[-1]
-    subject = data[1]
+    subject = data[-2]  
 
     teachers = []
 
-    if len(data) >= 4:
-        teachers = data[2:-1]
+    if len(data) > 3:  
+        teachers = data[1:-2]  
 
-    if class_name != '.R.P.':
+    if subject != '.R.P.':
         if not teachers:
             return {
                 'classe': class_name,
@@ -96,8 +115,9 @@ def extract_data(cell):
                 'aula': classroom
             }
     else:
+        teachers.append(class_name)
         return {
-            'attivita': class_name,
+            'attivita': subject,
             'insegnanti': teachers if teachers else None,
             'aula': classroom
         }

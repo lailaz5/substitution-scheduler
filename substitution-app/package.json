@@ -18,7 +18,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm-run-all -p start-flask start-react",
+    "start": "npm-run-all -p start-setup start-flask start-react",
+    "start-setup": "python ../backend/db-setup.py",
     "start-flask": "python ../backend/api.py",
     "start-react": "react-scripts start",
     "build": "react-scripts build",
