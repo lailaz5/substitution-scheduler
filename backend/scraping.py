@@ -24,7 +24,7 @@ def fetch_teachers():
     return teachers_dict
 
 
-def fetch_classes(teacher):
+def fetch_teacher_classes(teacher):
     classes = []
     teachers_dict = fetch_teachers()
     teacher_html = requests.get(f'{default_url}/{teachers_dict[teacher]}').text
@@ -72,10 +72,11 @@ def fetch_subjects(teacher):
         for lesson_time, lesson in lessons.items():
             if lesson and 'materia' in lesson:
                 subject = lesson['materia']
-                if len(subject) != 5 or '-' not in subject:  
-                    if not any(char.isdigit() for char in subject):  
-                        if subject not in subjects:
-                            subjects.append(subject)
+                if (len(subject) != 5 or '-' not in subject) and \
+                        (not any(char.isdigit() for char in subject)) and \
+                        (subject not in subjects) and \
+                        (subject not in ["TIC", "Lab. TIC", "STA", "Lab. STA", "HELP"]):
+                    subjects.append(subject)
 
     return subjects
 

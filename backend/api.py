@@ -1,4 +1,4 @@
-from scraping import fetch_timetable, fetch_teachers, fetch_classes, fetch_subjects
+from scraping import fetch_timetable, fetch_teachers, fetch_classes, fetch_teacher_classes, fetch_subjects
 from flask import Flask, Response, jsonify
 from urllib.parse import unquote
 from flask_cors import CORS
@@ -40,7 +40,7 @@ def subjects(teacher_name):
 def teacher_classes(teacher_name):  
     decoded_teacher_name = unquote(teacher_name)  
     try:
-        classes = fetch_classes(decoded_teacher_name)
+        classes = fetch_teacher_classes(decoded_teacher_name)
         response_JSON = json.dumps(classes, ensure_ascii=False, indent=2)
         response = Response(response_JSON, content_type='application/json; charset=utf-8')
         

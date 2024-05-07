@@ -1,7 +1,11 @@
+from selection import determine_sector
 import mysql.connector as c
 import requests
 import json
 import os
+
+
+api_base_url = 'http://localhost:5000'
 
 
 def create_tables(cursor):
@@ -22,6 +26,18 @@ def create_tables(cursor):
     ''')
 
     cursor.execute('''
+        CREATE TABLE IF NOT EXISTS docenti (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            nome VARCHAR(255) NOT NULL,
+            indirizzo INT,
+            punti_disponibilita INT,
+            ore_supp_effettuate INT,
+            ore_supp_minime INT,
+            FOREIGN KEY (indirizzo) REFERENCES indirizzi(id)
+        )
+    ''')
+
+    cursor.execute('''
         CREATE TABLE IF NOT EXISTS materie (
             id INT AUTO_INCREMENT PRIMARY KEY,
             materia VARCHAR(255) NOT NULL,
@@ -37,18 +53,23 @@ def initialize(cursor):
 
     with open(file_path, 'r') as f:
         subjects_mapping = json.load(f)
-        for indirizzo, materie_list in subjects_mapping.items():
-            cursor.execute("INSERT INTO indirizzi (descrizione) VALUES (%s)", (indirizzo,))
-            indirizzo_id = cursor.lastrowid
-            for materia in materie_list:
-                try:
-                    cursor.execute("INSERT INTO materie (materia, indirizzo_id) VALUES (%s, %s)", (materia, indirizzo_id))
-                except Exception as e:
-                    continue
+        indirizzi_values = [(indirizzo,) for indirizzo in subjects_mapping.keys()]
+        cursor.executemany("INSERT INTO indirizzi (descrizione) VALUES (%s)", indirizzi_values)
+        
+    cursor.execute("SELECT id, descrizione FROM indirizzi")
+    indirizzi_ids = {row[1]: row[0] for row in cursor}
 
-    classes = requests.get(f'http://localhost:5000/classes').json()
+    materie_values = [(materia, indirizzi_ids[indirizzo]) for indirizzo, materie_list in subjects_mapping.items() for materia in materie_list]
+    cursor.executemany("INSERT INTO materie (materia, indirizzo_id) VALUES (%s, %s)", materie_values)
 
-    for class_name in classes:
+    teachers_response = requests.get(f'{api_base_url}/teachers').json()
+    classes_response = requests.get(f'{api_base_url}/classes').json()
+    
+    teachers = [(teacher, determine_sector(teacher)) for teacher in teachers_response]
+    
+    classi_values = []
+    
+    for class_name in classes_response:
         indirizzo = None
         diurno = False
 
@@ -78,11 +99,16 @@ def initialize(cursor):
                 indirizzo = indirizzi_mapping.get(class_name[-1], 'N/A')
 
         if indirizzo:
-            cursor.execute("SELECT id FROM indirizzi WHERE descrizione = %s", (indirizzo,))
-            result = cursor.fetchone()
-            if result:
-                indirizzo_id = result[0]
-                cursor.execute("INSERT INTO classi (classe, indirizzo, diurno) VALUES (%s, %s, %s)", (class_name, indirizzo_id, diurno))
+            indirizzo_id = indirizzi_ids.get(indirizzo)
+            if indirizzo_id is not None:
+                classi_values.append((class_name, indirizzo_id, diurno))
+            else:
+                print(f"Indirizzo '{indirizzo}' not found in indirizzi_ids.")
+
+    cursor.executemany("INSERT INTO classi (classe, indirizzo, diurno) VALUES (%s, %s, %s)", classi_values)
+
+    docenti_values = [(teacher_name, indirizzi_ids.get(area), 0, 0, 0) for teacher_name, area in teachers]
+    cursor.executemany("INSERT INTO docenti (nome, indirizzo, punti_disponibilita, ore_supp_effettuate, ore_supp_minime) VALUES (%s, %s, %s, %s, %s)", docenti_values)
 
 
 def setup_database():
