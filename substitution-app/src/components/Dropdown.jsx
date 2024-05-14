@@ -4,7 +4,6 @@ import '../styles/Dropdown.css';
 
 const Dropdown = ({ onSelectTeacher }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('Insegnante da sostituire');
   const [teachersList, setTeachersList] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -20,16 +19,16 @@ const Dropdown = ({ onSelectTeacher }) => {
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-    setInputValue('');
-    setFilteredOptions(teachersList);
+    if (!isOpen) {
+      setInputValue('');
+      setFilteredOptions(teachersList);
+    }
   };
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
     setIsOpen(false);
     setInputValue('');
     setFilteredOptions(teachersList);
-
     onSelectTeacher(option);
   };
 
@@ -37,19 +36,24 @@ const Dropdown = ({ onSelectTeacher }) => {
     const inputText = e.target.value.trim().toLowerCase();
     setInputValue(inputText);
     setFilteredOptions(teachersList.filter(option => option.toLowerCase().includes(inputText)));
+    setIsOpen(true);
   };
 
   return (
     <div className="dropdown">
-      <div className="header" onClick={toggleDropdown}>
-        {selectedOption}
-      </div>
+      <input
+        className="header"
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        onFocus={toggleDropdown}
+        placeholder="Cerca un insegnante..."
+      />
       {isOpen && (
         <div className="content">
-          <input type="text" value={inputValue} onChange={handleInputChange} placeholder="Cerca un insegnante..." />
           <ul className="list">
-            {filteredOptions.map((option, index) => (
-              <li key={index} onClick={() => handleOptionClick(option)}>
+            {filteredOptions.map(option => (
+              <li key={option} onClick={() => handleOptionClick(option)}>
                 {option}
               </li>
             ))}

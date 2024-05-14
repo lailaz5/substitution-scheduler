@@ -4,15 +4,17 @@
 }
   
 .data {
+    border-radius: 0.5rem;
     background-color: #C9CEBA;
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    
     border: 1px solid #999E89;
 }
 
 .data:hover {
-    background-color: #b5bba2;
+    background-color: #A7AD94;
+    transition: background-color 0.3s ease;
 }
   
 .data p {

@@ -1,0 +1,7 @@
+flask
+flask-cors
+mysql
+requests
+bs4
+lxml
+axios

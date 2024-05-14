@@ -18,6 +18,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "prestart": "pip install -r ../requirements.txt",
     "start": "npm-run-all -p start-setup start-flask start-react",
     "start-setup": "python ../backend/db-setup.py",
     "start-flask": "python ../backend/api.py",
@@ -25,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
+  },    
   "eslintConfig": {
     "extends": [
       "react-app",

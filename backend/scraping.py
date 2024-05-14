@@ -91,7 +91,55 @@ def extract_data(cell):
         return {
             'attivita': data[0]
         }
-
+    '''
+    if len(data) == 9:
+            return {
+                'classe1': data[0],
+                'classe2': data[1],
+                'materia': data[-4],  
+                'insegnanti': data[2:-4],  
+                'aule': [data[-3], data[-2], data[-1]]  
+            }
+    if len(data) == 8:
+            return {
+                'classe1': data[0],
+                'classe2': data[1],
+                'materia': data[-4],  
+                'insegnanti': data[2:3],  
+                'aule': [data[-3], data[-2], data[-1]]  
+            }
+    if len(data) == 6:
+        if('IRC/Alternativa IRC' in data):
+            return {
+                'classe': data[0],
+                'materia': data[3],  
+                'insegnanti': data[1:2],  
+                'aule': [data[-2], data[-1]]  
+            }
+        elif ('Scienze Motorie' in data):
+            return {
+                'classe1': data[0],
+                'classe2': data[1],
+                'materia': data[-3],  
+                'insegnanti': data[2],  
+                'aule': [data[-2], data[-1]]  
+            }
+    if len(data) == 5:
+        return {
+            'classe': data[0],
+            'materia': data[2],  
+            'insegnanti': data[1],  
+            'aule': [data[-2], data[-1]]  
+    }
+    if len(data) == 7:
+        return {
+            'classe1': data[0],
+            'classe2': data[1],
+            'materia': data[-3],  
+            'insegnanti': data[2:-3],  
+            'aule': [data[-2], data[-1]]  
+        }
+    '''
     class_name = data[0]
     classroom = data[-1]
     subject = data[-2]  

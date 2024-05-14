@@ -1,35 +1,39 @@
 .dropdown {
-  margin: 2rem;
   position: relative;
-  display: inline-block;
-  cursor: pointer;
+}
+
+.input-container {
+  margin: 2rem;
 }
 
 .header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem; 
   background-color: #A4B494;
   color: #FFF;
   border-radius: 0.5rem;
-  user-select: none;
-  font-size: 1.1rem;
+  border: none;
+  font-size: 0.9rem; 
   transition: background-color 0.3s ease;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 0.5rem;
+  outline: none; 
+}
+
+.header::placeholder {
+  color: #FFF; 
 }
 
 .header:hover {
   background-color: #8F9E7E;
+  border: none;
 }
 
 .list {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
+  width: calc(100% - 4rem); 
   background-color: #F5F5F5;
   border: 1px solid #ddd;
   border-radius: 0.4rem;
@@ -56,38 +60,4 @@
 
 .list li:hover {
   background-color: #E1E1E1;
-}
-
-.content input[type="text"] {
-  width: 100%;
-  padding: 0.5rem 1rem;
-  border: 1px solid #DDD;
-  border-radius: 0.4rem;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  background-color: #F5F5F5;
-  color: #333;
-}
-
-.content input[type="text"]:focus {
-  outline: none; 
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-.tag {
-  background-color: #A4B494;
-  color: white;
-  padding: 5px 10px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.tag:hover {
-  background-color: #8F9E7E;
 }
