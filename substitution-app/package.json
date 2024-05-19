@@ -5,17 +5,25 @@
   "dependencies": {
     "@adobe/css-tools": "^4.3.2",
     "@babel/traverse": "^7.23.2",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.6",
+    "css-select": "^5.1.0",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
     "nth-check": "^2.1.1",
-    "postcss": "^8.4.31",
+    "postcss": "^8.4.38",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "^5.0.1",
+    "resolve-url-loader": "^5.0.0",
+    "svgo": "^3.3.2",
+    "web-vitals": "^2.1.4",
+    "webpack-dev-middleware": "^7.2.1"
   },
   "scripts": {
     "prestart": "pip install -r ../requirements.txt",
@@ -26,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },    
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -46,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-private-property-in-object": "^7.24.5",
     "npm-run-all": "^4.1.5"
   }
 }
