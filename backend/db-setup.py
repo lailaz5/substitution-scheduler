@@ -102,8 +102,6 @@ def initialize(cursor):
             indirizzo_id = indirizzi_ids.get(indirizzo)
             if indirizzo_id is not None:
                 classi_values.append((class_name, indirizzo_id, diurno))
-            else:
-                print(f"Indirizzo '{indirizzo}' not found in indirizzi_ids.")
 
     cursor.executemany("INSERT INTO classi (classe, indirizzo, diurno) VALUES (%s, %s, %s)", classi_values)
 

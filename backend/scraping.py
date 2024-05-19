@@ -91,7 +91,8 @@ def extract_data(cell):
         return {
             'attivita': data[0]
         }
-    '''
+    
+
     if len(data) == 9:
             return {
                 'classe1': data[0],
@@ -113,7 +114,7 @@ def extract_data(cell):
             return {
                 'classe': data[0],
                 'materia': data[3],  
-                'insegnanti': data[1:2],  
+                'insegnanti': data[1:3],  
                 'aule': [data[-2], data[-1]]  
             }
         elif ('Scienze Motorie' in data):
@@ -125,12 +126,20 @@ def extract_data(cell):
                 'aule': [data[-2], data[-1]]  
             }
     if len(data) == 5:
-        return {
-            'classe': data[0],
-            'materia': data[2],  
-            'insegnanti': data[1],  
-            'aule': [data[-2], data[-1]]  
-    }
+        if('IRC/Alternativa IRC' in data):
+            return {
+                'classe': data[0],
+                'materia': data[2],  
+                'insegnanti': data[1],  
+                'aule': [data[-2], data[-1]]  
+            }
+        else:
+            return {
+                'classe': data[0],
+                'materia': data[-2],
+                'insegnanti': data[1:-2],
+                'aula': data[-1]
+            }
     if len(data) == 7:
         return {
             'classe1': data[0],
@@ -139,7 +148,7 @@ def extract_data(cell):
             'insegnanti': data[2:-3],  
             'aule': [data[-2], data[-1]]  
         }
-    '''
+    
     class_name = data[0]
     classroom = data[-1]
     subject = data[-2]  

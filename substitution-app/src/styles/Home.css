@@ -1,6 +1,5 @@
 .banner {
     background-color: #F5F5F5;
-    padding: 40px;
     text-align: center;
     height: 100vh;
     display: flex;
@@ -8,30 +7,11 @@
     justify-content: center;
     align-items: center;
 }
-  
-.title {
-    font-size: 4rem;
-    margin: 0;
-    color: #333;
-}
 
-.title::selection {
-    color: #A4B494;
-}
-  
-.motto {
-    font-size: 2rem;
-    color: #666;
-}
-
-.motto::selection {
-    color: #A4B494;
-}
-  
 .button-container {
-    margin-top: 20px; 
+    margin-top: 1.2rem; 
     display: flex;
-    gap: 10px; 
+    gap: 2rem; 
 }
   
 .github-button,

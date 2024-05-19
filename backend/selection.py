@@ -21,24 +21,16 @@ def determine_sector(teacher):
 
     subjects = subjects_response.json()
 
-    teaching_specialization = set()
+    teaching_specializations = set()
 
     for subject in subjects:
-        found_specialization = None
         for specialization, predefined_subjects in specializations_mapping.items():
             if subject in predefined_subjects:
-                found_specialization = specialization
+                teaching_specializations.add(specialization)
                 break
-        if found_specialization is None:
-            return "N/A"
-        else:
-            teaching_specialization.add(found_specialization)
 
-    if len(teaching_specialization) > 1:
-        return "N/A"
-
-    if teaching_specialization:
-        return teaching_specialization.pop()
+    if teaching_specializations:
+        return ', '.join(teaching_specializations)
     else:
         return "N/A"
 

@@ -4,8 +4,7 @@ import '../styles/Home.css';
 const Home = () => {
   return (
     <div className="banner">
-      <h1 className="title">Substitution Scheduler</h1>
-      <p className="motto">~ Efficiently Manage Substitutions with Ease ~</p>
+      <img src="/smallLogo.png" alt="Website Logo" className="logo" />
       <div className="button-container">
         <a href="/TryItOut" className="try-button">
           <span>Try it out</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Cell.css'
+import '../styles/Cell.css';
 
 const Cell = ({ data }) => {
   const isEmpty = !data || Object.keys(data).length === 0;
@@ -10,19 +10,15 @@ const Cell = ({ data }) => {
         <div className="empty-cell-content">&nbsp;</div>
       ) : (
         <div className="data">
-          {data.attivita && <p>{data.attivita}</p>}
-          <p>{data.classe}</p>
-          <p>{data.materia}</p>
-          {Array.isArray(data.insegnanti) ? (
-            <div>
-              {data.insegnanti.map((teacher, index) => (
-                <p key={index}>{teacher}</p>
-              ))}
+          {Object.entries(data).map(([key, value], index) => (
+            <div key={index}>
+              {Array.isArray(value) ? (
+                value.map((item, idx) => <p key={idx}>{item}</p>)
+              ) : (
+                <p>{value}</p>
+              )}
             </div>
-          ) : (
-            <p>{data.insegnanti}</p>
-          )}
-          <p>{data.aula}</p>
+          ))}
         </div>
       )}
     </td>
