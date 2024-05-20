@@ -1,4 +1,5 @@
 from scraping import fetch_timetable, fetch_teachers, fetch_classes, fetch_teacher_classes, fetch_subjects
+from sheets import get_dashboard
 from flask import Flask, Response, jsonify
 from urllib.parse import unquote
 from flask_cors import CORS
@@ -16,11 +17,17 @@ def teachers_list():
     return jsonify(teachers_list), 200
 
 
-@app.route('/classes', methods=['GET'])
-def classes_list():
-    classes_dict = fetch_classes()
-    classes_list = list(classes_dict.keys())
-    return jsonify(classes_list), 200
+@app.route('/<path:teacher_name>', methods=['GET'])
+def timetable(teacher_name):
+    decoded_teacher_name = unquote(teacher_name)  
+    try:
+        timetable = fetch_timetable(decoded_teacher_name)
+        response_JSON = json.dumps(timetable, ensure_ascii=False, indent=2)
+        response = Response(response_JSON, content_type='application/json; charset=utf-8')
+        
+        return response, 200
+    except KeyError:
+        return jsonify({'error': 'Teacher not found'}), 404
 
 
 @app.route('/<path:teacher_name>_subjects', methods=['GET'])
@@ -49,17 +56,17 @@ def teacher_classes(teacher_name):
         return jsonify({'error': 'No results found.'}), 404
 
 
-@app.route('/<path:teacher_name>', methods=['GET'])
-def timetable(teacher_name):
-    decoded_teacher_name = unquote(teacher_name)  
-    try:
-        timetable = fetch_timetable(decoded_teacher_name)
-        response_JSON = json.dumps(timetable, ensure_ascii=False, indent=2)
-        response = Response(response_JSON, content_type='application/json; charset=utf-8')
-        
-        return response, 200
-    except KeyError:
-        return jsonify({'error': 'Teacher not found'}), 404
+@app.route('/classes', methods=['GET'])
+def classes_list():
+    classes_dict = fetch_classes()
+    classes_list = list(classes_dict.keys())
+    return jsonify(classes_list), 200
+
+
+@app.route('/dashboard', methods=['GET'])
+def dashboard_sheet():
+    dashboard_data = get_dashboard()
+    return jsonify(dashboard_data), 200
 
 
 if __name__ == '__main__':

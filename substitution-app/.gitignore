@@ -2,8 +2,6 @@
 /.pnp
 .pnp.js
 
-./backend/__pycache__
-
 /coverage
 
 /build

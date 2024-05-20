@@ -1,7 +1,8 @@
 flask
 flask-cors
-mysql
+mysql-connector-python
 requests
-bs4
+beautifulsoup4
 lxml
-axios
+gspread
+google-auth
