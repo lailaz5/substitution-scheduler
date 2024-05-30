@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@adobe/css-tools": "^4.3.2",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/traverse": "^7.23.2",
     "@svgr/plugin-svgo": "^8.1.0",
     "@svgr/webpack": "^8.1.0",
@@ -27,10 +28,7 @@
   },
   "scripts": {
     "prestart": "pip install -r ../requirements.txt",
-    "start": "npm-run-all -p start-setup start-flask start-react",
-    "start-setup": "python ../backend/db-setup.py",
-    "start-flask": "python ../backend/api.py",
-    "start-react": "react-scripts start",
+    "start": "start cmd /k python ../backend/api.py & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -54,7 +52,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.24.6",
     "@babel/plugin-transform-private-property-in-object": "^7.24.5",
+    "@babel/preset-react": "^7.24.6",
+    "babel-preset-react-app": "^10.0.1",
     "npm-run-all": "^4.1.5"
   }
 }
