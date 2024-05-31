@@ -8,6 +8,12 @@
     align-items: center;
 }
 
+.banner img {
+    max-width: 100%;
+    height: auto;
+    width: 50%; 
+}
+
 .button-container {
     margin-top: 1.2rem; 
     display: flex;
@@ -31,3 +37,33 @@
 .try-button:hover {
     background-color: #8F9E7E;
 } 
+
+@media (max-width: 1200px) {
+    .banner img {
+        width: 60%;
+    }
+}
+
+@media (max-width: 992px) {
+    .banner img {
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner img {
+        width: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    .banner img {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner img {
+        width: 100%;
+    }
+}
