@@ -1,5 +1,7 @@
+@import './colors.css';
+
 .banner {
-    background-color: #F5F5F5;
+    background-color: var(--background);
     text-align: center;
     height: 100vh;
     display: flex;
@@ -24,8 +26,8 @@
 .try-button {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: #A4B494;
-    color: #FFF;
+    background-color: var(--general);
+    color: var(--white);
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: 300;
@@ -35,7 +37,7 @@
   
 .github-button:hover,
 .try-button:hover {
-    background-color: #8F9E7E;
+    background-color: var(--general-hover);
 } 
 
 @media (max-width: 1200px) {

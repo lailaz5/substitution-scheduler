@@ -218,6 +218,6 @@ def fetch_timetable(teacher):
 if __name__ == '__main__':
     teacher = "Piccolo Gianluca"
     timetable = fetch_timetable(teacher)
-    classes = fetch_classes(teacher)
+    classes = fetch_teacher_classes(teacher)
     print(json.dumps(timetable, indent=4))
     print(json.dumps(classes, indent=4))

@@ -1,38 +1,38 @@
 .timetable {
-    margin-top: 20px;
+    margin-top: 1.25rem;
 }
 
 .loading {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 200px; 
+    height: 12.5rem; 
     font-size: 1.2rem;
-    color: #666;
+    color: var(--gray);
 }  
 
 p {
-    color: #333;
+    color: var(--black);
     text-align: center; 
 }
   
 table {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid #DDD;
-    font-size: 14px;
+    border: 0.06rem solid var(--platinum);
+    font-size: 0.8rem;
 }
   
 th, td {
-    padding: 8px;
+    padding: 0.5rem;
     text-align: center; 
-    border: 1px solid #B6B6B6;
-    color:  #333;
+    border: 0.06rem solid var(--silver);
+    color:  var(--black);
 }
   
 th,
 .time-column {
-    background-color: #DDD;
+    background-color: var(--platinum);
     font-weight: bold;
 }
   
@@ -42,5 +42,5 @@ td {
 }
 
 .timetable {
-    margin-top: 20px;
+    margin-top: 1.2rem;
 }

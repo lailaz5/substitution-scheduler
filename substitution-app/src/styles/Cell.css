@@ -1,3 +1,5 @@
+@import './colors.css';
+
 .data-cell {
     vertical-align: top;
     font-size: 0.8rem;
@@ -5,20 +7,18 @@
   
 .data {
     border-radius: 0.5rem;
-    background-color: #C9CEBA;
-    padding: 8px;
-    border: 1px solid #ccc;
-    
-    border: 1px solid #999E89;
+    background-color: var(--general);
+    padding: 0.5rem;
+    border: 0.06rem solid var(--general-hover);
 }
 
 .data:hover {
-    background-color: #A7AD94;
+    background-color: var(--general-hover);
     transition: background-color 0.3s ease;
 }
-  
+
 .data p {
-    color: #5F6450;
+    color: var(--background);
 }
 
 .data-cell.empty-cell {
