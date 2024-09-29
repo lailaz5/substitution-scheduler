@@ -11,17 +11,19 @@
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.7rem; 
+  display: inline-block; 
+  padding: 0.7rem;
   background-color: var(--general);
   color: var(--white);
   border-radius: 0.5rem;
   border: none;
-  font-size: 0.9rem; 
+  font-size: 0.9rem;
   transition: background-color 0.3s ease;
   margin-bottom: 0.5rem;
-  outline: none; 
+  outline: none;
+  min-width: 20ch; 
+  max-width: 100%; 
+  box-sizing: border-box; 
 }
 
 .header::placeholder {
@@ -37,17 +39,17 @@
   position: absolute;
   top: 100%;
   left: 0;
-  width: calc(100% - 4rem); 
-  background-color: #DADED5;
-  border: 1px solid #ddd;
+  width: auto;
+  background-color: var(--list);
+  border: 1px solid var(--platinum);
   border-radius: 0.4rem;
   list-style: none;
   padding: 0;
   margin: 0;
   
   display: none;
-  max-height: 15rem; 
-  overflow-y: auto; 
+  max-height: 15rem;
+  overflow-y: auto;
   z-index: 1;
 }
 
@@ -63,5 +65,5 @@
 }
 
 .list li:hover {
-  background-color: #BABFB5;
+  background-color: var(--list-hover);
 }

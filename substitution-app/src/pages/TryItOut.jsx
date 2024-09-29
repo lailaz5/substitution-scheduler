@@ -19,7 +19,7 @@ const TryItOut = () => {
         {selectedTeacher ? (
           <Timetable teacherName={selectedTeacher} />
         ) : (
-          <p>Seleziona un insegnante per visualizzare l'orario.</p>
+          <p>Seleziona un docente per visualizzare l'orario.</p>
         )}
       </div>
     </div>

@@ -92,6 +92,18 @@ def extract_data(cell):
             'attivita': data[0]
         }
     
+    if '.R.P.' in data:
+        return {
+            'attivita': data[-2],
+            'insegnanti': data[0:-2] if data[1:-2] else None,
+            'aula': data[-1]
+        }
+    
+    if 'HELP' in data:
+        return{
+            'attivita': data[0],
+            'aula': data[1]
+        }
 
     if len(data) == 9:
             return {
@@ -101,23 +113,18 @@ def extract_data(cell):
                 'insegnanti': data[2:-4],  
                 'aule': [data[-3], data[-2], data[-1]]  
             }
+    
     if len(data) == 8:
             return {
                 'classe1': data[0],
                 'classe2': data[1],
                 'materia': data[-4],  
-                'insegnanti': data[2:3],  
+                'insegnanti': data[2:4],  
                 'aule': [data[-3], data[-2], data[-1]]  
             }
+    
     if len(data) == 6:
-        if('IRC/Alternativa IRC' in data):
-            return {
-                'classe': data[0],
-                'materia': data[3],  
-                'insegnanti': data[1:3],  
-                'aule': [data[-2], data[-1]]  
-            }
-        elif ('Scienze Motorie' in data):
+        if 'Scienze Motorie' in data:
             return {
                 'classe1': data[0],
                 'classe2': data[1],
@@ -125,6 +132,14 @@ def extract_data(cell):
                 'insegnanti': data[2],  
                 'aule': [data[-2], data[-1]]  
             }
+        else:
+            return {
+                'classe': data[0],
+                'materia': data[3],  
+                'insegnanti': data[1:3],  
+                'aule': [data[-2], data[-1]]  
+            }
+
     if len(data) == 5:
         if('IRC/Alternativa IRC' in data):
             return {
@@ -140,6 +155,7 @@ def extract_data(cell):
                 'insegnanti': data[1:-2],
                 'aula': data[-1]
             }
+        
     if len(data) == 7:
         return {
             'classe1': data[0],
@@ -149,6 +165,7 @@ def extract_data(cell):
             'aule': [data[-2], data[-1]]  
         }
     
+
     class_name = data[0]
     classroom = data[-1]
     subject = data[-2]  
@@ -156,7 +173,7 @@ def extract_data(cell):
     teachers = []
 
     if len(data) > 3:  
-        teachers = data[1:-2]  
+        teachers = data[1:-2]
 
     if subject != '.R.P.':
         if not teachers:
@@ -172,13 +189,6 @@ def extract_data(cell):
                 'insegnanti': teachers,
                 'aula': classroom
             }
-    else:
-        teachers.append(class_name)
-        return {
-            'attivita': subject,
-            'insegnanti': teachers if teachers else None,
-            'aula': classroom
-        }
 
 
 def fetch_timetable(teacher):
@@ -193,11 +203,21 @@ def fetch_timetable(teacher):
 
     timetable = [[] for _ in days]
 
+    latest_timeslot = '14:00'
+    has_lesson_before_latest = False
+    has_lesson_after_latest = False
+
     for time_index, row in enumerate(rows):
         columns = iter(row.find_all('td'))
         lesson_time = next(iter(next(columns).find_all('p'))).text.strip()
         hours.append(lesson_time)
         day_index = 0
+
+        if lesson_time > latest_timeslot:
+            has_lesson_after_latest = True
+        if lesson_time <= latest_timeslot:
+            has_lesson_before_latest = True
+
         for cell in columns:
             while day_index < len(days) and len(timetable[day_index]) > time_index:
                 day_index += 1
@@ -206,6 +226,9 @@ def fetch_timetable(teacher):
                 timetable[day_index].append(extract_data(cell))
 
     timetable_data = {}
+
+    if has_lesson_after_latest and not has_lesson_before_latest:
+        return "Docente Serale"
 
     for day, lessons in zip(days, timetable):
         timetable_data[day] = {}

@@ -7,7 +7,7 @@ const Dropdown = ({ onSelectTeacher }) => {
   const [teachersList, setTeachersList] = useState([]);
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const [selectedTeacher, setSelectedTeacher] = useState(null); 
+  const [selectedTeacher, setSelectedTeacher] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:5000/teachers')
@@ -23,7 +23,7 @@ const Dropdown = ({ onSelectTeacher }) => {
     if (!isOpen) {
       setInputValue('');
       setFilteredOptions(teachersList);
-      setSelectedTeacher(null); 
+      setSelectedTeacher(null);
     }
   };
 
@@ -31,7 +31,7 @@ const Dropdown = ({ onSelectTeacher }) => {
     setIsOpen(false);
     setInputValue('');
     setFilteredOptions(teachersList);
-    setSelectedTeacher(option); 
+    setSelectedTeacher(option);
     onSelectTeacher(option);
   };
 
@@ -40,7 +40,17 @@ const Dropdown = ({ onSelectTeacher }) => {
     setInputValue(inputText);
     setFilteredOptions(teachersList.filter(option => option.toLowerCase().includes(inputText)));
     setIsOpen(true);
-    setSelectedTeacher(null); 
+    setSelectedTeacher(null);
+  };
+
+  const getWidthBasedOnContent = () => {
+    if (selectedTeacher) {
+      return `${selectedTeacher.length + 1}ch`;
+    } else if (inputValue) {
+      return `${inputValue.length + 1}ch`; 
+    } else {
+      return '20ch'; 
+    }
   };
 
   return (
@@ -48,10 +58,11 @@ const Dropdown = ({ onSelectTeacher }) => {
       <input
         className="header"
         type="text"
-        value={selectedTeacher || inputValue} 
+        value={selectedTeacher || inputValue}
         onChange={handleInputChange}
         onFocus={toggleDropdown}
-        placeholder="Cerca un insegnante..."
+        placeholder="Cerca un docente..."
+        style={{ width: getWidthBasedOnContent() }} 
       />
       {isOpen && (
         <div className="content">
