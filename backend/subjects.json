@@ -1,54 +1,42 @@
 {
     "N/A": [],
     "informatica": [
-        "Informatica", 
-        "Lab. Informatica", 
-        "Sistemi e Reti", 
-        "Lab. Sistemi e Reti", 
-        "Tecn. e Prog. di Sistemi Inf.", 
-        "Lab. Tecn e Prog. Sistemi Inf.", 
-        "GPOI", 
-        "Lab. GPOI",
-        "Telecomunicazioni",
-        "Informatica IT"
-    ],
-    "chimica": [
-        "Chimica", 
-        "Lab. Chimica", 
-        "Tecnologie Chimiche", 
-        "Lab. Tecn. Chimiche", 
-        "Chimica Analitica", 
-        "Lab. Chimica Analitica", 
-        "Chimica Organica", 
-        "Lab. Chimica Organica"
-    ],
-    "automazione": [
-        "Robotica",
-        "Lab. Robotica",
-        "Automazione", 
-        "Elettrotecnica", 
-        "Lab. Elettrotecnica", 
-        "Tecn. e Prog. di Sist. El.", 
-        "Lab.Tecn. e Prog. di Sist. El.", 
-        "Sist. Automatici", 
-        "Lab. Sistemi Automatici",
+        "Informatica",  
+        "Lab. Informatica",  
+        "Sistemi e Reti",  
+        "Lab. Sistemi e Reti",  
+        "Tecn. e Prog. di Sistemi Inf.",  
+        "Lab. Tecn e Prog. Sistemi Inf.",  
+        "GPOI",  
+        "Lab. GPOI", 
         "Telecomunicazioni",
         "Lab. Telecomunicazioni"
     ],
+    "chimica": [
+        "Tecnologie Chimiche",  
+        "Lab. Tecn. Chimiche",  
+        "Chimica Analitica",  
+        "Lab. Chimica Analitica",  
+        "Chimica Organica",  
+        "Lab. Chimica Organica" 
+    ],
+    "automazione": [
+        "Robotica",  
+        "Lab. Robotica",  
+        "Elettrotecnica",  
+        "Lab. Elettrotecnica",  
+        "Tecn. e Prog. di Sist. El.",  
+        "Lab.Tecn. e Prog. di Sist. El.",  
+        "Sist. Automatici",  
+        "Lab. Sistemi Automatici"
+    ],
     "meccanica": [
-        "Meccanica", 
-        "Tecn. Meccaniche", 
-        "Lab. Tecn. Meccaniche", 
+        "Tecn. Meccaniche",  
+        "Lab. Tecn. Meccaniche",  
         "Meccanica Macchine ed Energia", 
-        "Lab. Sistemi ed Automaz.", 
+        "Sistemi ed Automazione",   
+        "Lab. Sistemi ed Automaz.",  
         "Dis. Prog. e Org. Industriale", 
-        "Lab.Dis.Prog. Org.Industriale",
-        "Tec. Mecc. Prod.",
-        "Tec. Mecc",
-        "Mecc. Macc.",
-        "Sistemi Automazione",
-        "Disegno",
-        "Eserc. Pratiche",
-        "Dis. Org. Az"
+        "Lab.Dis.Prog. Org.Industriale"
     ]
 }
