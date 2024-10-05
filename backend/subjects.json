@@ -1,6 +1,46 @@
 {
-    "N/A": [],
-    "informatica": [
+    "Italiano e Storia": [
+        "Italiano",
+        "Storia"
+    ],
+    "Lingua Inglese": [
+        "Lingua Inglese"
+    ],
+    "Scienze Motorie": [
+        "Scienze Motorie"
+    ],
+    "Scienze": [
+        "Scienze della Terra",
+        "Geografia",
+        "Biologia",
+        "Chimica",
+        "Lab. Chimica",
+        "Fisica",
+        "Lab. Fisica"
+    ],
+    "Matematica": [
+        "Matematica",
+        "Complementi di Matematica"
+    ],
+    "Tecnologia": [
+        "Tecn. Rappr. Grafica",
+        "Lab. Tecn. Rappr. Graf."
+    ],
+    "Diritto ed Economia": [
+        "Diritto ed Economia",
+        "Progetti/Disp/econom"
+    ],
+    "IRC/Alternativa IRC": [
+        "IRC/Alternativa IRC",
+        "IRC"
+    ],
+    "Tic e STA": [
+        "TIC",
+        "Lab. TIC",
+        "STA",
+        "Lab. STA"
+    ],
+    "Informatica": [
         "Informatica",  
         "Lab. Informatica",  
         "Sistemi e Reti",  
@@ -12,7 +52,7 @@
         "Telecomunicazioni",
         "Lab. Telecomunicazioni"
     ],
-    "chimica": [
+    "Chimica": [
         "Tecnologie Chimiche",  
         "Lab. Tecn. Chimiche",  
         "Chimica Analitica",  
@@ -20,7 +60,7 @@
         "Chimica Organica",  
         "Lab. Chimica Organica" 
     ],
-    "automazione": [
+    "Automazione": [
         "Robotica",  
         "Lab. Robotica",  
         "Elettrotecnica",  
@@ -30,7 +70,7 @@
         "Sist. Automatici",  
         "Lab. Sistemi Automatici"
     ],
-    "meccanica": [
+    "Meccanica": [
         "Tecn. Meccaniche",  
         "Lab. Tecn. Meccaniche",  
         "Meccanica Macchine ed Energia", 

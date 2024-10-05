@@ -1,8 +1,10 @@
 import requests
+import json
+import os
 
 API_URL = "http://localhost:5000"
 
-# api endpoint /supplenze_in_corso -> "docente" "classe" "orainizio" "orafine", ...
+# /supplenze_in_corso -> "docente" "classe" "orainizio" "orafine", ...
 
 def specialization(teacher, absent_teacher, cell):
     absent_teacher_classes = requests.get(f"{API_URL}/{absent_teacher}_classes").json()  
@@ -17,10 +19,6 @@ def specialization(teacher, absent_teacher, cell):
                 return True  
 
     return False
-
-
-def subject():
-    ...
 
 
 def co_presence(cell, absent_teacher):
@@ -40,33 +38,87 @@ def co_presence(cell, absent_teacher):
             teacher_classes = requests.get(f"{API_URL}/{teacher}_classes").json()
             if cell["classe"] in teacher_classes:
                 results[teacher] += 10  
-        else:
-            results[teacher] = 5  
 
     return results
 
 
+def by_subject(teacher):
+    current_directory = os.path.dirname(__file__)
+    file_path = os.path.join(current_directory, 'subjects.json')
+
+    with open(file_path, 'r') as f:
+        subjects_areas = json.load(f)
+
+    try:
+        teacher_subjects = requests.get(f"{API_URL}/{teacher}_subjects").json()
+    except requests.RequestException as e:
+        print(f"Error fetching data for teacher {teacher}: {e}")
+        return None
+
+    teacher_subjects = [subject.lower() for subject in teacher_subjects]
+
+    matched_areas = set()
+
+    for area, subjects in subjects_areas.items():
+        for subject in subjects:
+            subject_lower = subject.lower()
+
+            if any(subject_lower == ts for ts in teacher_subjects):
+                matched_areas.add(area)
+
+    if len(matched_areas) == 0:
+        return None
+
+    matched_area = list(matched_areas)[0]
+
+    try:
+        all_teachers = requests.get(f"{API_URL}/teachers").json()
+    except requests.RequestException as e:
+        print(f"Error fetching data for teachers list: {e}")
+        return None
+
+    teachers_points = {}
+
+    for other_teacher in all_teachers:
+        if other_teacher == teacher:
+            continue
+
+        if "." in other_teacher:  
+            continue  
+
+        try:
+            other_teacher_subjects = requests.get(f"{API_URL}/{other_teacher}_subjects").json()
+        except requests.RequestException as e:
+            print(f"Error fetching data for teacher {other_teacher}: {e}")
+            continue 
+
+        other_teacher_subjects = [subject.lower() for subject in other_teacher_subjects]
+
+        for subject in subjects_areas[matched_area]:
+            if subject.lower() in other_teacher_subjects:
+                teachers_points[other_teacher] = 13
+                break  
+
+    return teachers_points
+
+
 def find_substitute_teachers(cell, absent_teacher):
-    suitable_teachers = {} # name : points
+    suitable_teachers = {} # nome : punti
 
-    teacher_list = requests.get(f"{API_URL}/teachers").json()
+    suitable_teachers = by_subject(absent_teacher)
 
-    for teacher in teacher_list:
-        """teacher_classes = requests.get(f"{API_URL}/{teacher}_classes").json() 
-
-        classes = [cell["classe"] for class_name in teacher_classes if class_name[0] in ['3', '4', '5']]"""
+    print("DONE")
         
-
     return suitable_teachers
 
 
 def analyze_timetable_cell(cell, absent_teacher):
     results = {}
 
-    if cell["insegnanti"]:  
-        results = co_presence(cell, absent_teacher)  
-    else:  
-        results = find_substitute_teachers(cell, absent_teacher) 
+    if cell.get("insegnanti"):
+        results = co_presence(cell, absent_teacher)
+    else:
+        results = find_substitute_teachers(cell, absent_teacher)
 
     return results
 
@@ -74,10 +126,7 @@ def analyze_timetable_cell(cell, absent_teacher):
 if __name__ == '__main__':
 
     print(analyze_timetable_cell({
-        "classe": "2MT-i",
-        "materia": "STA",
-        "insegnanti": [
-            ".Esposito Salvatore"
-        ],
-        "aula": "Lab. Cad-Cam Aula 41"
-        }, "Benatti Lorenzo"))
+      "classe": "3HT-i",
+      "materia": "Sistemi e Reti",
+      "aula": "Aula 92"
+    }, "Benatti Lorenzo"))

@@ -1,11 +1,11 @@
 import React from 'react';
 import '../styles/Cell.css';
 
-const Cell = ({ data }) => {
+const Cell = ({ data, onCellClick }) => {
   const isEmpty = !data || Object.keys(data).length === 0;
 
   function handleClick() {
-    alert('LeLeLe!'); // change this function with the suggestion bubble or side menu (use new API endpoint)
+    onCellClick();
   }
 
   return (
