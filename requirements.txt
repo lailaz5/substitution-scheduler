@@ -1,6 +1,6 @@
 flask
 flask-cors
-#mysql-connector-python
+mysql-connector-python
 requests
 beautifulsoup4
 lxml

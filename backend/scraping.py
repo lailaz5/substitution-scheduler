@@ -59,12 +59,17 @@ def fetch_classes():
                     for link in links:
                         class_name = link.text.strip()
                         class_link = link['href']
-                        classes[class_name] = class_link
+                        
+                        if class_name and ' ' not in class_name:
+                            classes[class_name] = class_link
 
     return classes
 
 
 def fetch_subjects(teacher):
+    if "." in teacher:  
+        return None
+    
     timetable = fetch_timetable(teacher)
     subjects = []
 
