@@ -3,7 +3,9 @@ import requests
 import json
 import os
 
+
 API_URL = "http://localhost:5000"
+
 
 def create_tables(cursor):
     cursor.execute('''

@@ -1,132 +1,124 @@
-import requests
-import json
-import os
+import mysql.connector as c
+
 
 API_URL = "http://localhost:5000"
 
-# /supplenze_in_corso -> "docente" "classe" "orainizio" "orafine", ...
 
-def specialization(teacher, absent_teacher, cell):
-    absent_teacher_classes = requests.get(f"{API_URL}/{absent_teacher}_classes").json()  
-    teacher_classes = requests.get(f"{API_URL}/{teacher}_classes").json()
-
-    if cell["classe"][0] in ['3', '4', '5']:
-        last_letters_absent = [class_name[-1] for class_name in absent_teacher_classes if class_name[0] in ['3', '4', '5']]
-        last_letters_teacher = [class_name[-1] for class_name in teacher_classes if class_name[0] in ['3', '4', '5']]
-
-        if last_letters_absent and last_letters_teacher:
-            if any(letter in last_letters_absent for letter in last_letters_teacher):
-                return True  
-
-    return False
+def connect_to_db():
+    config = {
+        'user': 'root',
+        'password': '',
+        'host': 'localhost',
+        'database': 'school_data',
+        'raise_on_warnings': True
+    }
+    return c.connect(**config)
 
 
-def co_presence(cell, absent_teacher):
+def find_teacher_area_and_subject(teacher, cursor):
+    cursor.execute('''
+        SELECT a.nome AS area_name, m.nome AS subject_name
+        FROM insegnamenti_materie im
+        JOIN docenti d ON im.id_docente = d.id
+        JOIN materie m ON im.id_materia = m.id
+        JOIN aree a ON m.area = a.id
+        WHERE d.nome = %s
+    ''', (teacher,))
+    
+    result = cursor.fetchall()
+
+    if result:
+        subjects_by_area = {}
+        for area_name, subject_name in result:
+            if area_name not in subjects_by_area:
+                subjects_by_area[area_name] = []
+            subjects_by_area[area_name].append(subject_name)
+
+        return subjects_by_area  
+    else:
+        return {} 
+
+
+def valid_co_presence(data): 
+    return any(".A.E" not in teacher for teacher in data["insegnanti"])
+
+
+def co_presence(data, absent_teacher, cursor):
     results = {}
 
-    for teacher in cell["insegnanti"]:
+    for teacher in data["insegnanti"]:
         if ".A.E" in teacher:  
             continue  
 
+        if teacher not in results:
+            results[teacher] = 0
+
         if "." in teacher and ".A.E" not in teacher:
-            results[teacher] = 2  
+            results[teacher] += 2  
             continue
 
-        if specialization(teacher, absent_teacher, cell):
-            results[teacher] = 10  
-
-            teacher_classes = requests.get(f"{API_URL}/{teacher}_classes").json()
-            if cell["classe"] in teacher_classes:
-                results[teacher] += 10  
+        if data["classe"][0] in ['3', '4', '5']:
+            substitute_teacher_teaching = find_teacher_area_and_subject(absent_teacher, cursor)
+            teacher_teaching = find_teacher_area_and_subject(teacher, cursor)
+            
+            lab_subject = "Lab. " + data["materia"]
+            if data["materia"] or lab_subject in teacher_teaching:
+                results[teacher] += 15
+            elif any(subject in teacher_teaching for subject in substitute_teacher_teaching):
+                results[teacher] += 10
 
     return results
 
 
-def by_subject(teacher):
-    current_directory = os.path.dirname(__file__)
-    file_path = os.path.join(current_directory, 'subjects.json')
+def find_substitutes(data, absent_teacher, cursor):
+    substitute_teacher_teaching = find_teacher_area_and_subject(absent_teacher, cursor)
 
-    with open(file_path, 'r') as f:
-        subjects_areas = json.load(f)
+    cursor.execute('SELECT nome FROM docenti')
+    all_teachers = cursor.fetchall()
 
-    try:
-        teacher_subjects = requests.get(f"{API_URL}/{teacher}_subjects").json()
-    except requests.RequestException as e:
-        print(f"Error fetching data for teacher {teacher}: {e}")
-        return None
+    substitute_teachers = {}
 
-    teacher_subjects = [subject.lower() for subject in teacher_subjects]
+    for teacher in all_teachers:
+        teacher_name = teacher[0]
 
-    matched_areas = set()
-
-    for area, subjects in subjects_areas.items():
-        for subject in subjects:
-            subject_lower = subject.lower()
-
-            if any(subject_lower == ts for ts in teacher_subjects):
-                matched_areas.add(area)
-
-    if len(matched_areas) == 0:
-        return None
-
-    matched_area = list(matched_areas)[0]
-
-    try:
-        all_teachers = requests.get(f"{API_URL}/teachers").json()
-    except requests.RequestException as e:
-        print(f"Error fetching data for teachers list: {e}")
-        return None
-
-    teachers_points = {}
-
-    for other_teacher in all_teachers:
-        if other_teacher == teacher:
+        if teacher_name == absent_teacher or ".A.E" in teacher_name:
             continue
 
-        if "." in other_teacher:  
-            continue  
+        teacher_teaching = find_teacher_area_and_subject(teacher_name, cursor)
 
-        try:
-            other_teacher_subjects = requests.get(f"{API_URL}/{other_teacher}_subjects").json()
-        except requests.RequestException as e:
-            print(f"Error fetching data for teacher {other_teacher}: {e}")
-            continue 
+        substitute_teachers[teacher_name] = 0
+        lab_subject = "Lab. " + data["materia"]
 
-        other_teacher_subjects = [subject.lower() for subject in other_teacher_subjects]
+        if any(data["materia"] in subjects for subjects in teacher_teaching.values()) or \
+           any(lab_subject in subjects for subjects in teacher_teaching.values()):
+            substitute_teachers[teacher_name] += 15  
+        elif any(area in teacher_teaching for area in substitute_teacher_teaching):
+            substitute_teachers[teacher_name] += 5  
 
-        for subject in subjects_areas[matched_area]:
-            if subject.lower() in other_teacher_subjects:
-                teachers_points[other_teacher] = 13
-                break  
-
-    return teachers_points
+    return {k: v for k, v in sorted(substitute_teachers.items(), key=lambda item: item[1], reverse=True) if v > 0}
 
 
-def find_substitute_teachers(cell, absent_teacher):
-    suitable_teachers = {} # nome : punti
+def analyze_timetable_cell(data, absent_teacher):
+    connection = connect_to_db()
+    cursor = connection.cursor()
 
-    suitable_teachers = by_subject(absent_teacher)
-
-    print("DONE")
-        
-    return suitable_teachers
-
-
-def analyze_timetable_cell(cell, absent_teacher):
-    results = {}
-
-    if cell.get("insegnanti"):
-        results = co_presence(cell, absent_teacher)
+    if data.get("insegnanti") and valid_co_presence(data):
+        results = co_presence(data, absent_teacher, cursor)
     else:
-        results = find_substitute_teachers(cell, absent_teacher)
+        results = find_substitutes(data, absent_teacher, cursor)
 
+    cursor.close()
+    connection.close()
+    
     return results
 
 
 if __name__ == '__main__':
-
     print(analyze_timetable_cell({
       "classe": "3HT-i",
       "materia": "Sistemi e Reti",
+      "insegnanti": [
+        ".A.E Falda Enrico"
+      ],
       "aula": "Aula 92"
     }, "Benatti Lorenzo"))
