@@ -241,11 +241,3 @@ def fetch_timetable(teacher):
             timetable_data[day][lesson_time] = lesson
 
     return timetable_data
-
-
-if __name__ == '__main__':
-    teacher = "Piccolo Gianluca"
-    timetable = fetch_timetable(teacher)
-    classes = fetch_teacher_classes(teacher)
-    print(json.dumps(timetable, indent=4))
-    print(json.dumps(classes, indent=4))

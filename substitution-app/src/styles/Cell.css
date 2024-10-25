@@ -4,7 +4,13 @@
     vertical-align: top;
     font-size: 0.8rem;
 }
-  
+
+.selected-cell {
+    vertical-align: top;
+    font-size: 0.8rem;
+    background-color: var(--platinum);
+}
+
 .data {
     border-radius: 0.5rem;
     background-color: var(--general);

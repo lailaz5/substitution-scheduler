@@ -1,6 +1,7 @@
-import os
-import gspread
 from google.oauth2.service_account import Credentials
+import gspread
+import os
+
 
 def get_dashboard():
     current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -24,8 +25,3 @@ def get_dashboard():
             teacher_balance_dict[teacher] = balance
 
     return teacher_balance_dict
-
-
-if __name__ == "__main__":
-    teacher_balances = get_dashboard()
-    print(teacher_balances)

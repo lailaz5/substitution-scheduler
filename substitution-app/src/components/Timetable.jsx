@@ -7,6 +7,7 @@ const Timetable = ({ teacherName, onCellClick }) => {
   const [timetableData, setTimetableData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+  const [selectedCell, setSelectedCell] = useState({ day: '', time: '' });
 
   useEffect(() => {
     if (teacherName) {
@@ -25,6 +26,11 @@ const Timetable = ({ teacherName, onCellClick }) => {
         });
     }
   }, [teacherName]);
+
+  const handleCellClick = (day, time, data) => {
+    setSelectedCell({ day, time });
+    onCellClick(day, time, data);
+  };
 
   return (
     <div className="timetable">
@@ -46,7 +52,14 @@ const Timetable = ({ teacherName, onCellClick }) => {
                 <tr key={time}>
                   <td className="time-column">{time}</td>
                   {Object.keys(timetableData).map((day) => (
-                    <Cell key={day} data={timetableData[day][time]} onCellClick={onCellClick} />
+                    <Cell
+                      key={`${day}-${time}`}
+                      day={day}
+                      time={time}
+                      data={timetableData[day][time]}
+                      onCellClick={handleCellClick}
+                      selected={selectedCell.day === day && selectedCell.time === time}
+                    />
                   ))}
                 </tr>
               ))}

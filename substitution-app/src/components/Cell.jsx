@@ -1,15 +1,20 @@
 import React from 'react';
 import '../styles/Cell.css';
 
-const Cell = ({ data, onCellClick }) => {
+const Cell = ({ data, day, time, onCellClick, selected }) => {
   const isEmpty = !data || Object.keys(data).length === 0;
 
   function handleClick() {
-    onCellClick();
+    onCellClick(day, time, data);
   }
 
   return (
-    <td className={`data-cell ${isEmpty ? 'empty-cell' : ''}`} onClick={handleClick}>
+    <td
+      className={`data-cell ${isEmpty ? 'empty-cell' : ''} ${selected ? 'selected-cell' : ''}`}
+      onClick={handleClick}
+      data-day={day}
+      data-time={time}
+    >
       {isEmpty ? (
         <div className="empty-cell-content">&nbsp;</div>
       ) : (

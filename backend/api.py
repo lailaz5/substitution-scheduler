@@ -1,6 +1,7 @@
 from scraping import fetch_timetable, fetch_teachers, fetch_classes, fetch_teacher_classes, fetch_subjects
+from flask import Flask, Response, jsonify, request
+from logic import analyze_timetable_cell
 from sheets import get_dashboard
-from flask import Flask, Response, jsonify
 from urllib.parse import unquote
 from flask_cors import CORS
 import json
@@ -8,6 +9,24 @@ import json
 
 app = Flask(__name__)
 CORS(app)
+
+
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    data = request.json
+    absent_teacher = data.get("absent_teacher")
+    day = data.get("day")
+    timeslot = data.get("timeslot")
+
+    timetable_data = fetch_timetable(absent_teacher)
+
+    cell_data = timetable_data.get(day, {}).get(timeslot)
+
+    if not cell_data:
+        return jsonify({"error": "No timetable entry found"}), 404
+
+    results = analyze_timetable_cell(cell_data, absent_teacher, day, timeslot)
+    return jsonify(results)
 
 
 @app.route('/teachers', methods=['GET'])
@@ -19,7 +38,7 @@ def teachers_list():
 
 @app.route('/<path:teacher_name>', methods=['GET'])
 def timetable(teacher_name):
-    decoded_teacher_name = unquote(teacher_name)  
+    decoded_teacher_name = unquote(teacher_name)
     try:
         timetable = fetch_timetable(decoded_teacher_name)
         response_JSON = json.dumps(timetable, ensure_ascii=False, indent=2)
@@ -31,8 +50,8 @@ def timetable(teacher_name):
 
 
 @app.route('/<path:teacher_name>_subjects', methods=['GET'])
-def subjects(teacher_name):  
-    decoded_teacher_name = unquote(teacher_name)  
+def subjects(teacher_name):
+    decoded_teacher_name = unquote(teacher_name)
     try:
         subjects = fetch_subjects(decoded_teacher_name)
         response_JSON = json.dumps(subjects, ensure_ascii=False, indent=2)
@@ -44,8 +63,8 @@ def subjects(teacher_name):
 
 
 @app.route('/<path:teacher_name>_classes', methods=['GET'])
-def teacher_classes(teacher_name):  
-    decoded_teacher_name = unquote(teacher_name)  
+def teacher_classes(teacher_name):
+    decoded_teacher_name = unquote(teacher_name)
     try:
         classes = fetch_teacher_classes(decoded_teacher_name)
         response_JSON = json.dumps(classes, ensure_ascii=False, indent=2)
