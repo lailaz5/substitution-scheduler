@@ -26,6 +26,7 @@ const TryItOut = () => {
     }
 
     abortControllerRef.current = new AbortController();
+    setMenuVisible(true);
     setLoadingMenu(true);
 
     try {
@@ -38,7 +39,7 @@ const TryItOut = () => {
 
       const cellData = timetableData[day]?.[time];
 
-      if (!cellData) {
+      if (!cellData || cellData == "") {
         console.error('No timetable entry found for the selected day and time');
         return;
       }

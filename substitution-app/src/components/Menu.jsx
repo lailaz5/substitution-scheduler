@@ -16,7 +16,7 @@ const Menu = ({ substitutes, loading }) => {
             </button>
           ))
       ) : (
-        <p>Non sono disponibili docenti.</p>
+        <p>Non sono disponibili docenti o non deve essere effettuata una supplenza.</p>
       )}
     </div>
   );
