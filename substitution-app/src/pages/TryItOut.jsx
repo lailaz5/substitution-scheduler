@@ -39,7 +39,8 @@ const TryItOut = () => {
 
       const cellData = timetableData[day]?.[time];
 
-      if (!cellData || cellData == "") {
+      if (!cellData || cellData === "") {
+        setMenuVisible(false);
         console.error('No timetable entry found for the selected day and time');
         return;
       }
